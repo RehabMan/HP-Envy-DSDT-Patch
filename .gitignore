@@ -1,0 +1,6 @@
+patched/ssdt*.dsl
+patched/dsdt.dsl
+build/*.aml
+envy15.xcodeproj/project.xcworkspace/xcuserdata
+envy15.xcodeproj/xcuserdata
+linux_native/*

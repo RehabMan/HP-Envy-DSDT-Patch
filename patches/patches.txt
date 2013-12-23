@@ -1,0 +1,69 @@
+## FOR DSDT
+into definitionblock code_regex External\s\(GPRW,\sIntObj\) replace_matched begin External(GPRW,MethodObj) end;
+
+into method label _INI parent_label _SB.PCI0 code_regex If\s+\(_OSI\s+\(\"Windows\s2012\"\)\) replace_matched 
+begin If(LOr(_OSI("Darwin"),_OSI("Windows 2012"))) end;
+
+## FOR SSDT-1 (copied from SSDT-3)
+into scope label _SB remove_entry;
+into definitionblock code_regex . insert
+begin
+Scope (_SB)\n
+{\n
+    Device (PNLF)\n
+    {\n
+        Name (_HID, EisaId ("APP0002"))\n
+        Name (_CID, "backlight")\n
+        Name (_UID, 0x0A)\n
+        Name (_STA, 0x0B)\n
+        Method (_BCL, 0, NotSerialized)\n 
+        {\n
+            //Return (\_SB.PCI0.IGPU.DD1F._BCL()) }\n
+            Return (Package ()\n
+            {\n
+              100, 62, \n
+                0, \n
+                6, \n
+               12, \n
+               18, \n
+               25, \n
+               31, \n
+               37, \n
+               43, \n
+               49, \n
+               56, \n
+               62,\n
+               68,\n
+               74,\n
+               81,\n
+               87,\n
+               93,\n
+               100,\n
+            })\n
+        }\n
+        Method (_BCM, 1, NotSerialized) { \_SB.PCI0.IGPU.DD1F._BCM(Arg0) }\n
+        Method (_BQC, 0, NotSerialized) { Return (\_SB.PCI0.IGPU.DD1F._BQC()) }\n
+        Method (_DOS, 1, NotSerialized) { \_SB.PCI0.IGPU._DOS(Arg0) }\n
+    }\n
+}\n
+end;
+
+into_all method label _PRW code_regex Return\s\(GPRW\)\n.*0x09\n.*0x04 replace_matched begin Return(GPRW(9,4)) end;
+into definitionblock code_regex External\s\(GPRW,\sIntObj\) replace_matched begin External(GPRW,MethodObj) end;
+into definitionblock code_regex External\s\(\\_SB_\.PCI0\.LPCB\.H_EC\.OBCL\,\sIntObj\) replace_matched begin  External (\\_SB_.PCI0.LPCB.H_EC.OBCL, MethodObj) end;
+
+into method label _DSM parent_adr 0x00020000 remove_entry;
+into device name_adr 0x00020000 insert
+begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+    Return (Package()\n
+    {\n
+        "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },\n
+        "hda-gfx", Buffer() { "onboard-1" },\n
+        "AAPL00,DualLink", Buffer() { 0x01, 0x00, 0x00, 0x00 },\n
+    })\n
+}\n
+end;
+
