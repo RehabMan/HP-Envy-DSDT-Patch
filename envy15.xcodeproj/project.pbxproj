@@ -19,7 +19,12 @@
 		840152F9182AE4A300D58B0A /* ssdt7.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt7.dsl; sourceTree = "<group>"; };
 		840152FA182AE4A300D58B0A /* ssdt8.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt8.dsl; sourceTree = "<group>"; };
 		840152FB182AE4C100D58B0A /* patches.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = patches.txt; path = patches/patches.txt; sourceTree = "<group>"; };
+		84288FD8187C65CB00BD2E2D /* brightness.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = brightness.txt; path = patches/brightness.txt; sourceTree = "<group>"; };
+		84517BE5186FC7A4003ACE44 /* dsdt.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsdt.dsl; sourceTree = "<group>"; };
+		84517BE6186FC7A4003ACE44 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		84517BE7186FC7A4003ACE44 /* ssdt4.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt4.dsl; sourceTree = "<group>"; };
 		8499623A1857F04D009A226D /* syntax_dsdt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt.txt; path = patches/syntax_dsdt.txt; sourceTree = "<group>"; };
+		84ADCC25187CB0A100720ACA /* keyboard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keyboard.txt; path = patches/keyboard.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -30,6 +35,7 @@
 				840152F0182AE46D00D58B0A /* disassemble.sh */,
 				840152F1182AE48100D58B0A /* ACPI */,
 				840152FC182AE4C600D58B0A /* patches */,
+				84517BE4186FC7A4003ACE44 /* patched */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +60,20 @@
 			children = (
 				840152FB182AE4C100D58B0A /* patches.txt */,
 				8499623A1857F04D009A226D /* syntax_dsdt.txt */,
+				84288FD8187C65CB00BD2E2D /* brightness.txt */,
+				84ADCC25187CB0A100720ACA /* keyboard.txt */,
 			);
 			name = patches;
+			sourceTree = "<group>";
+		};
+		84517BE4186FC7A4003ACE44 /* patched */ = {
+			isa = PBXGroup;
+			children = (
+				84517BE6186FC7A4003ACE44 /* readme.txt */,
+				84517BE5186FC7A4003ACE44 /* dsdt.dsl */,
+				84517BE7186FC7A4003ACE44 /* ssdt4.dsl */,
+			);
+			path = patched;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
