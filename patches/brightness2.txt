@@ -72,6 +72,10 @@ Scope (\_SB)\n
             // This 0xC value comes from looking what OS X initializes this\n
             // register to after display sleep (using ACPIDebug/ACPIPoller)\n
             Store(0xC0000000, LEVW)\n
+            // Because this laptop starts at full brightness, I just set it right
+            // here.  This is to insure _BQC and XBQC return the correct level
+            // at startup.
+            Store(0xad90ad9, LEVX)\n
         }\n
         // _BCM/_BQC: set/get for brightness level\n
         Method (_BCM, 1, NotSerialized)\n
