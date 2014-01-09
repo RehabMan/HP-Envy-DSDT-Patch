@@ -72,7 +72,9 @@ patch:
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_IRQ.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/ssdt4.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/ssdt4.dsl
-	patchmatic $(PATCHED)/ssdt4.dsl patches/brightness.txt $(PATCHED)/ssdt4.dsl
+	#patchmatic $(PATCHED)/ssdt4.dsl patches/brightness.txt $(PATCHED)/ssdt4.dsl
+	patchmatic $(PATCHED)/ssdt4.dsl patches/brightness2.txt $(PATCHED)/ssdt4.dsl
+	patchmatic $(PATCHED)/ssdt4.dsl patches/brightness2_data.txt $(PATCHED)/ssdt4.dsl
 	patchmatic $(PATCHED)/dsdt.dsl patches/keyboard.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/usb/usb_7-series.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_WAK2.txt $(PATCHED)/dsdt.dsl
