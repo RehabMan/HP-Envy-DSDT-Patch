@@ -67,20 +67,17 @@ install: $(PRODUCTS)
 .PHONY: patch
 patch:
 	cp dsdt.dsl ssdt4.dsl $(PATCHED)
-	patchmatic dsdt.dsl patches/syntax_dsdt.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/syntax_dsdt.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/keyboard.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/audio/audio_HDEF-layout12.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_IRQ.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/ssdt4.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/ssdt4.dsl
-	#patchmatic $(PATCHED)/ssdt4.dsl patches/brightness.txt $(PATCHED)/ssdt4.dsl
-	patchmatic $(PATCHED)/ssdt4.dsl patches/brightness2.txt $(PATCHED)/ssdt4.dsl
-	patchmatic $(PATCHED)/ssdt4.dsl patches/brightness2_data.txt $(PATCHED)/ssdt4.dsl
-	patchmatic $(PATCHED)/dsdt.dsl patches/keyboard.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/ssdt4.dsl $(LAPTOPGIT)/graphics/graphics_PNLF_haswell.txt $(PATCHED)/ssdt4.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/usb/usb_7-series.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_WAK2.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_OSYS.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_MCHC.txt $(PATCHED)/dsdt.dsl
-	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_OSYS.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/battery/battery_HP-Envy-17t.txt $(PATCHED)/dsdt.dsl
 
 # native correlations

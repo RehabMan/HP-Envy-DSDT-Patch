@@ -60,14 +60,22 @@
 		840152FC182AE4C600D58B0A /* patches */ = {
 			isa = PBXGroup;
 			children = (
-				840152FB182AE4C100D58B0A /* patches.txt */,
 				8499623A1857F04D009A226D /* syntax_dsdt.txt */,
+				84ADCC25187CB0A100720ACA /* keyboard.txt */,
+				843A4C481884C49D009AF7FE /* not used */,
+			);
+			name = patches;
+			sourceTree = "<group>";
+		};
+		843A4C481884C49D009AF7FE /* not used */ = {
+			isa = PBXGroup;
+			children = (
+				840152FB182AE4C100D58B0A /* patches.txt */,
 				84288FD8187C65CB00BD2E2D /* brightness.txt */,
 				8409B471187E3C9A0006CF52 /* brightness2.txt */,
 				8409B472187E3F3E0006CF52 /* brightness2_data.txt */,
-				84ADCC25187CB0A100720ACA /* keyboard.txt */,
 			);
-			name = patches;
+			name = "not used";
 			sourceTree = "<group>";
 		};
 		84517BE4186FC7A4003ACE44 /* patched */ = {
