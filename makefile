@@ -1,14 +1,16 @@
-#.SUFFIXES: .aml .dsl
+# makefile
 
-#.aml.dsl :
-#	$(IASL) -p $@ $<
+#
+# Patches/Installs/Builds DSDT patches for Haswell Envy 15
+#
+# Created by RehabMan 
+#
 
 EFIDIR=/Volumes/EFI
 LAPTOPGIT=../laptop.git
 EXTRADIR=./Extra
 BUILDDIR=./build
 PATCHED=./patched
-#PRODUCTS=$(BUILDDIR)/dsdt.aml $(BUILDDIR)/ssdt1.aml $(BUILDDIR)/ssdt2.aml $(BUILDDIR)/ssdt3.aml $(BUILDDIR)/ssdt4.aml $(BUILDDIR)/ssdt5.aml $(BUILDDIR)/ssdt6.aml $(BUILDDIR)/ssdt7.aml $(BUILDDIR)/ssdt8.aml
 PRODUCTS=$(BUILDDIR)/dsdt.aml $(BUILDDIR)/ssdt4.aml
 
 IASLFLAGS=-vr -w1
@@ -20,34 +22,14 @@ all: $(PRODUCTS)
 $(BUILDDIR)/dsdt.aml: $(PATCHED)/dsdt.dsl
 	$(IASL) $(IASLFLAGS) -p $@ $<
 	
-#$(BUILDDIR)/ssdt1.aml: ssdt1.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
-#$(BUILDDIR)/ssdt2.aml: ssdt2.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
-#$(BUILDDIR)/ssdt3.aml: ssdt3.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
 $(BUILDDIR)/ssdt4.aml: $(PATCHED)/ssdt4.dsl
 	$(IASL) $(IASLFLAGS) -p $@ $<
 
-#$(BUILDDIR)/ssdt5.aml: ssdt5.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
-#$(BUILDDIR)/ssdt6.aml: ssdt6.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
-#$(BUILDDIR)/ssdt7.aml: ssdt7.dsl
-#	$(IASL) $(IASLFLAGS) -p $@ $<
-
-#$(BUILDDIR)/ssdt8.aml: ssdt8.dsl
-#		$(IASL) $(IASLFLAGS) -p $@ $<
-	
 .PHONY: clean
 clean:
 	rm $(PRODUCTS)
 
+# Chameleon Install
 .PHONY: install_extra
 install_extra: $(PRODUCTS)
 	-rm $(EXTRADIR)/ssdt-*.aml
@@ -55,7 +37,9 @@ install_extra: $(PRODUCTS)
 	cp $(BUILDDIR)/ssdt4.aml $(EXTRADIR)/ssdt-1.aml
 	#cp $(BUILDDIR)/ssdt1.aml $(EXTRADIR)/ssdt-2.aml
 	#cp $(BUILDDIR)/ssdt5.aml $(EXTRADIR)/ssdt-3.aml
-	
+
+
+# Clover Install
 .PHONY: install
 install: $(PRODUCTS)
 	if [ ! -d $(EFIDIR) ]; then mkdir $(EFIDIR) && sudo mount -t msdos /dev/disk0s1 $(EFIDIR); fi
@@ -64,6 +48,8 @@ install: $(PRODUCTS)
 	sudo umount $(EFIDIR)
 	if [ -d "/Volumes/EFI" ]; then rmdir /Volumes/EFI; fi
 
+
+# Patch with 'patchmatic'
 .PHONY: patch
 patch:
 	cp dsdt.dsl ssdt4.dsl $(PATCHED)
