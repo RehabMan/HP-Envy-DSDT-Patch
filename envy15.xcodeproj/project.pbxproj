@@ -19,6 +19,7 @@
 		840152F9182AE4A300D58B0A /* ssdt7.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt7.dsl; sourceTree = "<group>"; };
 		840152FA182AE4A300D58B0A /* ssdt8.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt8.dsl; sourceTree = "<group>"; };
 		840152FB182AE4C100D58B0A /* patches.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = patches.txt; path = patches/patches.txt; sourceTree = "<group>"; };
+		8406FCD6188627B8006D8DB7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8409B471187E3C9A0006CF52 /* brightness2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = brightness2.txt; path = patches/brightness2.txt; sourceTree = "<group>"; };
 		8409B472187E3F3E0006CF52 /* brightness2_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = brightness2_data.txt; path = patches/brightness2_data.txt; sourceTree = "<group>"; };
 		84288FD8187C65CB00BD2E2D /* brightness.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = brightness.txt; path = patches/brightness.txt; sourceTree = "<group>"; };
@@ -26,6 +27,7 @@
 		84517BE6186FC7A4003ACE44 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		84517BE7186FC7A4003ACE44 /* ssdt4.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt4.dsl; sourceTree = "<group>"; };
 		8499623A1857F04D009A226D /* syntax_dsdt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt.txt; path = patches/syntax_dsdt.txt; sourceTree = "<group>"; };
+		84ADB53718860F9600097B3C /* remove_wmi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = remove_wmi.txt; path = patches/remove_wmi.txt; sourceTree = "<group>"; };
 		84ADCC25187CB0A100720ACA /* keyboard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keyboard.txt; path = patches/keyboard.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +35,7 @@
 		840152E4182AE40B00D58B0A = {
 			isa = PBXGroup;
 			children = (
+				8406FCD6188627B8006D8DB7 /* README.md */,
 				840152EF182AE45E00D58B0A /* makefile */,
 				840152F0182AE46D00D58B0A /* disassemble.sh */,
 				840152F1182AE48100D58B0A /* ACPI */,
@@ -62,6 +65,7 @@
 			children = (
 				8499623A1857F04D009A226D /* syntax_dsdt.txt */,
 				84ADCC25187CB0A100720ACA /* keyboard.txt */,
+				84ADB53718860F9600097B3C /* remove_wmi.txt */,
 				843A4C481884C49D009AF7FE /* not used */,
 			);
 			name = patches;
