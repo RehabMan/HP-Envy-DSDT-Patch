@@ -8,7 +8,7 @@
 
 EFIDIR=/Volumes/EFI
 LAPTOPGIT=../laptop.git
-EXTRADIR=./Extra
+EXTRADIR=/Extra
 BUILDDIR=./build
 PATCHED=./patched
 PRODUCTS=$(BUILDDIR)/dsdt.aml $(BUILDDIR)/ssdt4.aml
