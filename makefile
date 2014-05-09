@@ -8,6 +8,7 @@
 
 EFIDIR=/Volumes/EFI
 LAPTOPGIT=../laptop.git
+DEBUGGIT=../debug.git
 EXTRADIR=/Extra
 BUILDDIR=./build
 PATCHED=./patched
@@ -54,8 +55,10 @@ install: $(PRODUCTS)
 patch:
 	cp dsdt.dsl ssdt4.dsl $(PATCHED)
 	patchmatic $(PATCHED)/dsdt.dsl patches/syntax_dsdt.txt $(PATCHED)/dsdt.dsl
-	patchmatic $(PATCHED)/dsdt.dsl patches/keyboard.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/cleanup.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl patches/remove_wmi.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/ssdt4.dsl patches/cleanup.txt $(PATCHED)/ssdt4.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/keyboard.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/audio/audio_HDEF-layout12.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_IRQ.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/dsdt.dsl
@@ -65,7 +68,19 @@ patch:
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_WAK2.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_OSYS.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_MCHC.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_HPET.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_RTC.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_SMBUS.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_Mutex.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_PNOT.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_IMEI.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/battery/battery_HP-Envy-17t.txt $(PATCHED)/dsdt.dsl
+
+.PHONY: patch_debug
+patch_debug:
+	make patch
+	patchmatic $(PATCHED)/dsdt.dsl $(DEBUGGIT)/debug.txt $(PATCHED)/dsdt.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/debug.txt $(PATCHED)/dsdt.dsl
 
 # native correlations
 # ssdt1 - PTID

@@ -26,6 +26,7 @@
 		84517BE5186FC7A4003ACE44 /* dsdt.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsdt.dsl; sourceTree = "<group>"; };
 		84517BE6186FC7A4003ACE44 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		84517BE7186FC7A4003ACE44 /* ssdt4.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ssdt4.dsl; sourceTree = "<group>"; };
+		84810D0019113F4E0029A588 /* debug.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = debug.txt; path = patches/debug.txt; sourceTree = "<group>"; };
 		8499623A1857F04D009A226D /* syntax_dsdt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt.txt; path = patches/syntax_dsdt.txt; sourceTree = "<group>"; };
 		84ADB53718860F9600097B3C /* remove_wmi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = remove_wmi.txt; path = patches/remove_wmi.txt; sourceTree = "<group>"; };
 		84ADCC25187CB0A100720ACA /* keyboard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keyboard.txt; path = patches/keyboard.txt; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 				8499623A1857F04D009A226D /* syntax_dsdt.txt */,
 				84ADCC25187CB0A100720ACA /* keyboard.txt */,
 				84ADB53718860F9600097B3C /* remove_wmi.txt */,
+				84810D0019113F4E0029A588 /* debug.txt */,
 				843A4C481884C49D009AF7FE /* not used */,
 			);
 			name = patches;

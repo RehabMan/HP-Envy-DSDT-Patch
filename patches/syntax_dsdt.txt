@@ -5,5 +5,5 @@ into method label ALWR parent_label ACEL code_regex Not\s\(Arg0\) remove_matched
 into method label _HOT parent_label TZ00 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 into method label _HOT parent_label TZ02 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 
-into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\) remove_matched;
-into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP\) remove_matched;
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0,.*\) remove_matched;
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP,.*\) remove_matched;
