@@ -64,6 +64,8 @@ patch:
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/ssdt4.dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/ssdt4.dsl
 	patchmatic $(PATCHED)/ssdt4.dsl $(LAPTOPGIT)/graphics/graphics_PNLF_haswell.txt $(PATCHED)/ssdt4.dsl
+	patchmatic $(PATCHED)/ssdt4.dsl patches/hdmi_audio.txt $(PATCHED)/ssdt4.dsl
+	patchmatic $(PATCHED)/dsdt.dsl patches/hdmi_audio.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/usb/usb_7-series.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_WAK2.txt $(PATCHED)/dsdt.dsl
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/system/system_OSYS.txt $(PATCHED)/dsdt.dsl

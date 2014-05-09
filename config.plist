@@ -183,6 +183,16 @@
 				<key>Comment</key>
 				<string>Enable USB3 post wake</string>
 			</dict>
+			<dict>
+				<key>Name</key>
+				<string>AppleIntelFramebufferAzul</string>
+				<key>Find</key>
+				<data>BgAmCgEDAwMAAAACAAAAAQAAYAAAAABA2QoAANkKAAAAAAAAAAAAAAAACAACAAAAMAAAAAEFCQAABAAAhwAAAAIECQAABAAAhwAAAP8AAAABAAAAQAAAAA8AAAABAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</data>
+				<key>Replace</key>
+				<data>BgAmCgEDAwMAAAACAAAAAQAAYAAAAABA2QoAANkKAAAAAAAAAAAAAAAACAACAAAAMAAAAAEFCQAABAAAhwAAAAIECQAACAAAhwAAAP8AAAABAAAAQAAAAA8AAAABAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</data>
+				<key>Comment</key>
+				<string>HDMI audio connector patch 10.9.2</string>
+			</dict>
 		</array>
 	</dict>
 	<key>SystemParameters</key>
