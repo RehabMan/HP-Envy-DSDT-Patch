@@ -173,13 +173,9 @@
 				<key>Name</key>
 				<string>AppleUSBXHCI</string>
 				<key>Find</key>
-				<data>
-				xoDIAAAAAQ==
-				</data>
+				<data>xoDIAAAAAQ==</data>
 				<key>Replace</key>
-				<data>
-				xoDIAAAAAA==
-				</data>
+				<data>xoDIAAAAAA==</data>
 				<key>Comment</key>
 				<string>Enable USB3 post wake</string>
 			</dict>
@@ -192,6 +188,26 @@
 				<data>BgAmCgEDAwMAAAACAAAAAQAAYAAAAABA2QoAANkKAAAAAAAAAAAAAAAACAACAAAAMAAAAAEFCQAABAAAhwAAAAIECQAACAAAhwAAAP8AAAABAAAAQAAAAA8AAAABAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</data>
 				<key>Comment</key>
 				<string>HDMI audio connector patch 10.9.2</string>
+			</dict>
+			<dict>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Find</key>
+				<data>PYQZ1BE=</data>
+				<key>Replace</key>
+				<data>PQAAAAA=</data>
+				<key>Comment</key>
+				<string>AppleHDA IDT 76e0 #1</string>
+			</dict>
+			<dict>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Find</key>
+				<data>PYsZ1BE=</data>
+				<key>Replace</key>
+				<data>PeB2HRE=</data>
+				<key>Comment</key>
+				<string>AppleHDA IDT 76e0 #2</string>
 			</dict>
 		</array>
 	</dict>
