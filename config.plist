@@ -50,6 +50,8 @@
 	</dict>
 	<key>GUI</key>
 	<dict>
+		<key>Language</key>
+		<string>en:0</string>
 		<key>Theme</key>
 		<string>bluemac</string>
 		<key>Mouse</key>
@@ -65,63 +67,14 @@
 			<true/>
 			<key>Legacy</key>
 			<false/>
+			<key>Kernel</key>
+			<string>All</string>
 		</dict>
-		<key>Custom</key>
-		<dict>
-			<key>Entries</key>
-			<array>
-				<dict>
-					<key>FullTitle</key>
-					<string>UEFI Internal</string>
-					<key>Hidden</key>
-					<false/>
-					<key>Disabled</key>
-					<true/>
-					<key>Type</key>
-					<string>Other</string>
-				</dict>
-				<dict>
-					<key>Volume</key>
-					<string>3A84FBF5-EF52-49EA-895F-534C6304B118</string>
-					<key>AddArguments</key>
-					<string>-gux_defer_usb2</string>
-					<key>FullTitle</key>
-					<string>Mavericks</string>
-					<key>Hidden</key>
-					<false/>
-					<key>Disabled</key>
-					<false/>
-					<key>InjectKexts</key>
-					<false/>
-					<key>NoCaches</key>
-					<false/>
-					<key>Type</key>
-					<string>OSX</string>
-					<key>VolumeType</key>
-					<string>Internal</string>
-				</dict>
-				<dict>
-					<key>Volume</key>
-					<string>7FD47ECE-9122-4EB1-8428-F4B2B1DBDC24</string>
-					<key>AddArguments</key>
-					<string>-gux_defer_usb2</string>
-					<key>FullTitle</key>
-					<string>Mountain Lion</string>
-					<key>Hidden</key>
-					<false/>
-					<key>Disabled</key>
-					<false/>
-					<key>InjectKexts</key>
-					<false/>
-					<key>NoCaches</key>
-					<false/>
-					<key>Type</key>
-					<string>OSX</string>
-					<key>VolumeType</key>
-					<string>Internal</string>
-				</dict>
-			</array>
-		</dict>
+		<key>Hide</key>
+		<array>
+			<string>Windows</string>
+			<string>\EFI\BOOT\BOOTX64.EFI</string>
+		</array>
 	</dict>
 	<key>ACPI</key>
 	<dict>
