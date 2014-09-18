@@ -96,9 +96,11 @@ patch:
 	patchmatic $(PATCHED)/dsdt.dsl $(LAPTOPGIT)/battery/battery_HP-Envy-17t.txt $(PATCHED)/dsdt.dsl
 ifeq ($(OPTIMUS), 1)
 	cp $(PEGP).dsl $(PATCHED)
+	patchmatic $(PATCHED)/$(PEGP).dsl patches/cleanup.txt $(PATCHED)/$(PEGP).dsl
 	patchmatic $(PATCHED)/$(PEGP).dsl patches/optimus.txt $(PATCHED)/$(PEGP).dsl
 	patchmatic $(PATCHED)/$(PEGP).dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/$(PEGP).dsl
 endif
+	patchmatic $(PATCHED)/$(IAOE).dsl patches/cleanup.txt $(PATCHED)/$(IAOE).dsl
 	patchmatic $(PATCHED)/$(IAOE).dsl patches/syntax_iaoe.txt $(PATCHED)/$(IAOE).dsl
 	patchmatic $(PATCHED)/$(IAOE).dsl $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt $(PATCHED)/$(IAOE).dsl
 
