@@ -1,0 +1,13 @@
+# to disable nvidia (on optimus equiped machines)
+# apply to ssdt5.dsl
+
+into method label _BCM parent_label DD02 replace_content begin // nothing end;
+into_all method label MXMX remove_entry;
+into device label WMI1 remove_entry;
+
+into method label _INI code_regex ([\s\S]*) replace_matched
+begin
+%1\n
+_OFF()\n
+end;
+

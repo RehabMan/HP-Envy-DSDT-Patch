@@ -28,6 +28,8 @@
 		8499623A1857F04D009A226D /* syntax_dsdt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt.txt; path = patches/syntax_dsdt.txt; sourceTree = "<group>"; };
 		84ADB53718860F9600097B3C /* remove_wmi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = remove_wmi.txt; path = patches/remove_wmi.txt; sourceTree = "<group>"; };
 		84ADCC25187CB0A100720ACA /* keyboard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keyboard.txt; path = patches/keyboard.txt; sourceTree = "<group>"; };
+		84CDBC0A19CA6FC1001E28DE /* optimus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = optimus.txt; path = patches/optimus.txt; sourceTree = "<group>"; };
+		84CDBC0B19CA8065001E28DE /* syntax_iaoe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_iaoe.txt; path = patches/syntax_iaoe.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -68,6 +70,8 @@
 				84ADCC25187CB0A100720ACA /* keyboard.txt */,
 				84ADB53718860F9600097B3C /* remove_wmi.txt */,
 				84810D0019113F4E0029A588 /* debug.txt */,
+				84CDBC0A19CA6FC1001E28DE /* optimus.txt */,
+				84CDBC0B19CA8065001E28DE /* syntax_iaoe.txt */,
 			);
 			name = patches;
 			sourceTree = "<group>";

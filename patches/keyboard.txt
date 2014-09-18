@@ -21,16 +21,19 @@ begin
 Store(HKNO, Local0)\n
 If (LEqual(Local0,7))\n
 {\n
+// Brightness Down\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x0205)\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x0285)\n
 }\n
 If (LEqual(Local0,8))\n
 {\n
+// Brightness Up\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x0206)\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x0286)\n
 }\n
 If (LEqual(Local0,4))\n
 {\n
+// Mirror toggle\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x026e)\n
     Notify(\_SB.PCI0.LPCB.PS2K, 0x02ee)\n
 }\n

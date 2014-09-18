@@ -1,0 +1,3 @@
+# syntax fixes for iaoe ssdt.dsl
+
+into method label GPWR code_regex And\s+\(WKRS,\s+0x0F\) remove_matched;
