@@ -18,7 +18,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>slide=0</string>
+		<string>kext-dev-mode=1 slide=0</string>
 		<key>Log</key>
 		<false/>
 		<key>Timeout</key>
