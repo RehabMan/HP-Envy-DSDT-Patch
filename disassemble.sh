@@ -27,7 +27,7 @@ echo $list
 echo $list_comma
 
 for aml in $list; do
-    iasl -p ../$aml.dsl -e ${list//$aml/} -d $aml
+    iasl -p ../$aml.dsl -e ${list//$aml/} -d -dl $aml
 done
 
 cd ..

@@ -15,7 +15,7 @@ What you'll need:
 - patchmatic: https://github.com/RehabMan/OS-X-MaciASL-patchmatic
 - MaciASL: https://github.com/RehabMan/OS-X-MaciASL-patchmatic (always useful, even in this case)
 - Xcode developer tools
-- iasl: http://www.tonymacx86.com/attachments/laptop-compatibility/75686d1386006623-would-my-dell-inspiron-17-7000-hackintosh-able-iasl.zip
+- iasl: https://bitbucket.org/RehabMan/acpica/downloads
 - optional: git
 
 You can get Xcode for free by registering as a developer at developer.apple.com.  It is free.  Or, I think the command line tools will be installed automatically if you attempt to use them (eg. type 'make' in Terminal, and follow the prompts for downloading).
