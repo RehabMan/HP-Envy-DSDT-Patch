@@ -1,0 +1,29 @@
+#
+# Inject 0xa260006 for graphics
+#
+
+into method label _DSM parent_adr 0x00020000 remove_entry;
+into device name_adr 0x00020000 insert
+begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+    // template package\n
+    Return (Package()\n
+    {\n
+        "device-id", Buffer() { 0x12, 0x04, 0x00, 0x00 },\n
+        "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },\n
+        "hda-gfx", Buffer() { "onboard-1" },\n
+        "model", Buffer() { "Intel HD Graphics 4600" },\n
+    })\n
+}\n
+end;
+
+#
+# Make a slight change to the backlight patch...
+# by changing LMAX to 0, will use the BIOS value (0x3a9)
+#
+into device label PNLF code_regex Name.*\(LMAX,.*\) replace_matched begin Name (LMAX, 0) end;
+
+
+

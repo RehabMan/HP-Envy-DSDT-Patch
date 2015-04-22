@@ -9,7 +9,7 @@ Method (_DSM, 4, NotSerialized)\n
     If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
     Return (Package()\n
     {\n
-        // Note: Function key part seems to not be necessary
+        // Note: Function key part seems to not be necessary\n
         // "AAPL,has-embedded-fn-keys", Buffer() { 0x01, 0x00, 0x00, 0x00 },\n
         "RM,oem-id", "HPQOEM",\n
     })\n
