@@ -133,9 +133,9 @@ update_kernelcache:
 
 .PHONY: install_hda
 install_hda:
-	sudo rm -Rf /System/Library/Extensions/AppleHDA_ALC283.kext
-	sudo cp -R ./AppleHDA_ALC283.kext /System/Library/Extensions
-	if [ "`which tag`" != "" ]; then sudo tag -a Blue /System/Library/Extensions/AppleHDA_ALC283.kext; fi
+	sudo rm -Rf /System/Library/Extensions/$(HDAINJECT)
+	sudo cp -R ./$(HDAINJECT) /System/Library/Extensions
+	if [ "`which tag`" != "" ]; then sudo tag -a Blue /System/Library/Extensions/$(HDAINJECT); fi
 	make update_kernelcache
 
 # Patch with 'patchmatic'
