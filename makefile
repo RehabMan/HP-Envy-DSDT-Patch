@@ -143,9 +143,12 @@ install_hda:
 .PHONY: patch
 patch: $(ALL_PATCHED)
 
-$(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl patches/syntax_dsdt.txt patches/cleanup.txt patches/remove_wmi.txt patches/iaoe.txt patches/keyboard.txt patches/audio.txt patches/sensors.txt $(LAPTOPGIT)/system/system_IRQ.txt $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt patches/hdmi_audio.txt $(LAPTOPGIT)/usb/usb_7-series.txt patches/usb.txt $(LAPTOPGIT)/system/system_WAK2.txt $(LAPTOPGIT)/system/system_OSYS_win8.txt $(LAPTOPGIT)/system/system_MCHC.txt $(LAPTOPGIT)/system/system_HPET.txt $(LAPTOPGIT)/system/system_RTC.txt $(LAPTOPGIT)/system/system_SMBUS.txt $(LAPTOPGIT)/system/system_Mutex.txt $(LAPTOPGIT)/system/system_PNOT.txt $(LAPTOPGIT)/system/system_IMEI.txt $(LAPTOPGIT)/battery/battery_HP-Envy-17t.txt patches/bcm_wifi.txt patches/card_reader.txt
+$(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl patches/syntax_dsdt.txt patches/syntax_dsdt_nvidia.txt patches/cleanup.txt patches/remove_wmi.txt patches/iaoe.txt patches/keyboard.txt patches/audio.txt patches/sensors.txt $(LAPTOPGIT)/system/system_IRQ.txt $(LAPTOPGIT)/graphics/graphics_Rename-GFX0.txt patches/hdmi_audio.txt $(LAPTOPGIT)/usb/usb_7-series.txt patches/usb.txt $(LAPTOPGIT)/system/system_WAK2.txt $(LAPTOPGIT)/system/system_OSYS_win8.txt $(LAPTOPGIT)/system/system_MCHC.txt $(LAPTOPGIT)/system/system_HPET.txt $(LAPTOPGIT)/system/system_RTC.txt $(LAPTOPGIT)/system/system_SMBUS.txt $(LAPTOPGIT)/system/system_Mutex.txt $(LAPTOPGIT)/system/system_PNOT.txt $(LAPTOPGIT)/system/system_IMEI.txt $(LAPTOPGIT)/battery/battery_HP-Envy-17t.txt patches/bcm_wifi.txt patches/card_reader.txt
 	cp $(UNPATCHED)/$(DSDT).dsl $(PATCHED)
 	patchmatic $@ patches/syntax_dsdt.txt
+ifneq "$(PEGP)" ""
+	patchmatic $@ patches/syntax_dsdt_nvidia.txt
+endif
 	patchmatic $@ patches/cleanup.txt
 	patchmatic $@ patches/remove_wmi.txt
 	patchmatic $@ patches/iaoe.txt

@@ -54,6 +54,7 @@
 		ED84A45B1AE815F700897847 /* Platforms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Platforms.plist; path = Resources_IDT76e0_Envy/layout/Platforms.plist; sourceTree = "<group>"; };
 		ED84A45C1AE815F700897847 /* layout12.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = layout12.plist; path = Resources_IDT76e0_Envy/layout/layout12.plist; sourceTree = "<group>"; };
 		ED84A45D1AE815F700897847 /* ahhcd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ahhcd.plist; path = Resources_IDT76e0_Envy/ahhcd.plist; sourceTree = "<group>"; };
+		EDE734D71AE87BB400B07AD4 /* syntax_dsdt_nvidia.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt_nvidia.txt; path = patches/syntax_dsdt_nvidia.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -99,6 +100,7 @@
 				849555B9191D4D0A00A5DE4D /* cleanup.txt */,
 				84ADB53718860F9600097B3C /* remove_wmi.txt */,
 				8499623A1857F04D009A226D /* syntax_dsdt.txt */,
+				EDE734D71AE87BB400B07AD4 /* syntax_dsdt_nvidia.txt */,
 				ED84A44C1AE8157900897847 /* syntax_ppc.txt */,
 				84CDBC0B19CA8065001E28DE /* syntax_iaoe.txt */,
 				ED84A44F1AE8157900897847 /* iaoe.txt */,
