@@ -12,6 +12,52 @@
 						<array>
 							<dict>
 								<key>NodeID</key>
+								<integer>21</integer>
+								<key>ProcessingState</key>
+								<true/>
+							</dict>
+							<dict>
+								<key>Amp</key>
+								<dict>
+									<key>Channels</key>
+									<array>
+										<dict>
+											<key>Bind</key>
+											<integer>1</integer>
+											<key>Channel</key>
+											<integer>1</integer>
+										</dict>
+										<dict>
+											<key>Bind</key>
+											<integer>2</integer>
+											<key>Channel</key>
+											<integer>2</integer>
+										</dict>
+									</array>
+									<key>MuteInputAmp</key>
+									<false/>
+									<key>PublishMute</key>
+									<true/>
+									<key>PublishVolume</key>
+									<true/>
+									<key>VolumeInputAmp</key>
+									<false/>
+								</dict>
+								<key>NodeID</key>
+								<integer>23</integer>
+							</dict>
+							<dict>
+								<key>Boost</key>
+								<integer>1</integer>
+								<key>NodeID</key>
+								<integer>10</integer>
+							</dict>
+						</array>
+					</array>
+					<array>
+						<array>
+							<dict>
+								<key>NodeID</key>
 								<integer>22</integer>
 								<key>ProcessingState</key>
 								<true/>
@@ -35,20 +81,20 @@
 										</dict>
 									</array>
 									<key>MuteInputAmp</key>
-									<true/>
+									<false/>
 									<key>PublishMute</key>
 									<true/>
 									<key>PublishVolume</key>
 									<true/>
 									<key>VolumeInputAmp</key>
-									<true/>
+									<false/>
 								</dict>
 								<key>NodeID</key>
 								<integer>24</integer>
 							</dict>
 							<dict>
 								<key>Boost</key>
-								<integer>1</integer>
+								<integer>2</integer>
 								<key>NodeID</key>
 								<integer>17</integer>
 							</dict>
@@ -60,7 +106,7 @@
 						<array>
 							<dict>
 								<key>NodeID</key>
-								<integer>11</integer>
+								<integer>15</integer>
 							</dict>
 							<dict>
 								<key>Amp</key>
@@ -90,7 +136,15 @@
 									<false/>
 								</dict>
 								<key>NodeID</key>
-								<integer>19</integer>
+								<integer>28</integer>
+							</dict>
+							<dict>
+								<key>NodeID</key>
+								<integer>27</integer>
+							</dict>
+							<dict>
+								<key>NodeID</key>
+								<integer>20</integer>
 							</dict>
 						</array>
 					</array>
@@ -98,7 +152,7 @@
 						<array>
 							<dict>
 								<key>NodeID</key>
-								<integer>13</integer>
+								<integer>11</integer>
 							</dict>
 							<dict>
 								<key>Amp</key>

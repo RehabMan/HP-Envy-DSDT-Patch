@@ -40,6 +40,7 @@ if [ 0 -eq 0 ]; then
     #/usr/libexec/plistbuddy -c "Delete ':IOKitPersonalities:HDA Hardware Config Resource:PostConstructionInitialization'" $plist
     /usr/libexec/plistbuddy -c "Add ':IOKitPersonalities:HDA Hardware Config Resource:IOProbeScore' integer" $plist
     /usr/libexec/plistbuddy -c "Set ':IOKitPersonalities:HDA Hardware Config Resource:IOProbeScore' 2000" $plist
+    #/usr/libexec/plistbuddy -c "Set ':IOKitPersonalities:HDA Hardware Config Resource:CFBundleIdentifier' 'com.apple.driver.AppleHDA'" $plist
     /usr/libexec/plistbuddy -c "Merge ./Resources_$1/ahhcd.plist ':IOKitPersonalities:HDA Hardware Config Resource'" $plist
 fi
     echo " Done."
