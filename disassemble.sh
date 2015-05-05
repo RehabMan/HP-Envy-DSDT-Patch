@@ -24,7 +24,8 @@ if [ "`echo native_patchmatic/*`" != "native_patchmatic/readme.txt" ]; then
     cp ./native_patchmatic/DSDT.aml ./native_patchmatic/SSDT*.aml ./tmp
     cd ./tmp
     iasl -d -dl *
-    list=`grep -l DefinitionBlock.*HPQOEM *.dsl`
+    #list=`grep -l DefinitionBlock.*HPQOEM *.dsl`
+    list=`echo *.dsl`
     mkdir ./non-clover
     cp ${list//.dsl/.aml} ./non-clover
     rm *.aml *.dsl
