@@ -5,6 +5,14 @@ into method label ALWR parent_label ACEL code_regex Not\s\(Arg0\) remove_matched
 into method label _HOT parent_label TZ00 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 into method label _HOT parent_label TZ02 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 
-#into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0,.*\) remove_matched;
-#into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP,.*\) remove_matched;
+# these patches are needed for the nvidia case...
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0,.*\) remove_matched;
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP,.*\) remove_matched;
+
+# this External fixes an error in the case no nvidia is present...
+into definitionblock code_regex (External.*PUAM.*) replace_matched
+begin
+External(_SB.PCI0.PEG0.PEGP, DeviceObj)\n
+%1
+end;
 
