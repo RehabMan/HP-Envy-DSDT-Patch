@@ -1,7 +1,8 @@
 # syntax fixes for dsdt.dsl
 
 # this wrong code is probably not called, no attempt to fix it
-into method label ALWR parent_label ACEL code_regex Not\s\(Arg0\) remove_matched;
+into method label ALWR parent_label ACEL code_regex Not\s\(Arg0\) removeall_matched;
+into method label ALWR parent_label ACEL code_regex Not\s\(Arg1\) removeall_matched;
 into method label _HOT parent_label TZ00 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 into method label _HOT parent_label TZ02 code_regex Subtract\s\(Local0,\s0x03\) remove_matched;
 

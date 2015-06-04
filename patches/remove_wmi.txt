@@ -8,3 +8,9 @@ into method label _Q51 parent_label H_EC remove_entry;
 into method label _Q52 parent_label H_EC remove_entry;
 into method label _PSR parent_label AC code_regex If.*LNot.*ACST.*LNot.*SMAR[\s\S]*\} remove_matched;
 
+# for K-series
+into method label _Q20 code_regex .*WMID.* removeall_matched;
+into method label _Q15 code_regex If\s\(LEqual\s\(.*WMID\.WMIF.*\)\) replace_matched begin If(Zero) end;
+into method label _Q15 code_regex .*WMID.* removeall_matched;
+into method label _Q9A code_regex .*WMID.* removeall_matched;
+into method label _Q9B code_regex .*WMID.* removeall_matched;
