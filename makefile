@@ -18,6 +18,8 @@ UNPATCHED=./unpatched
 RESOURCES=./Resources_IDT76e0_Envy
 HDAINJECT=AppleHDA_IDT76e0_Envy.kext
 HDALAYOUT=layout12
+USBINJECT=USBXHC_Envy.kext
+BACKLIGHTINJECT=AppleBacklightInjector.kext
 
 # DSDT is easy to find...
 DSDT=DSDT
@@ -58,7 +60,7 @@ IASLFLAGS=-ve
 IASL=iasl
 
 .PHONY: all
-all: $(PRODUCTS) $(HDAINJECT)
+all: $(PRODUCTS) $(HDAINJECT) $(BACKLIGHTINJECT)
 
 $(BUILDDIR)/DSDT.aml: $(PATCHED)/$(DSDT).dsl
 	$(IASL) $(IASLFLAGS) -p $@ $<
@@ -126,6 +128,10 @@ $(RESOURCES)/layout/Platforms.xml.zlib: $(RESOURCES)/layout/Platforms.plist /Sys
 $(RESOURCES)/layout/$(HDALAYOUT).xml.zlib: $(RESOURCES)/layout/$(HDALAYOUT).plist
 	./tools/zlib deflate $< >$@
 
+$(BACKLIGHTINJECT): Backlight.plist patch_backlight.sh
+	./patch_backlight.sh
+	touch $@
+
 .PHONY: update_kernelcache
 update_kernelcache:
 	sudo touch /System/Library/Extensions
@@ -136,6 +142,20 @@ install_hda:
 	sudo rm -Rf /System/Library/Extensions/$(HDAINJECT)
 	sudo cp -R ./$(HDAINJECT) /System/Library/Extensions
 	if [ "`which tag`" != "" ]; then sudo tag -a Blue /System/Library/Extensions/$(HDAINJECT); fi
+	make update_kernelcache
+
+.PHONY: install_usb
+install_usb:
+	sudo rm -Rf /System/Library/Extensions/$(USBINJECT)
+	sudo cp -R ./$(USBINJECT) /System/Library/Extensions
+	if [ "`which tag`" != "" ]; then sudo tag -a Blue /System/Library/Extensions/$(USBINJECT); fi
+	make update_kernelcache
+
+.PHONY: install_backlight
+install_backlight:
+	sudo rm -Rf /System/Library/Extensions/$(BACKLIGHTINJECT)
+	sudo cp -R ./$(BACKLIGHTINJECT) /System/Library/Extensions
+	if [ "`which tag`" != "" ]; then sudo tag -a Blue /System/Library/Extensions/$(BACKLIGHTINJECT); fi
 	make update_kernelcache
 
 # Patch with 'patchmatic'

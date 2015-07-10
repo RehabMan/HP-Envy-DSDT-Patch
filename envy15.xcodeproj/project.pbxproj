@@ -18,6 +18,7 @@
 		84ADB53718860F9600097B3C /* remove_wmi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = remove_wmi.txt; path = patches/remove_wmi.txt; sourceTree = "<group>"; };
 		84ADCC25187CB0A100720ACA /* keyboard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keyboard.txt; path = patches/keyboard.txt; sourceTree = "<group>"; };
 		84CDBC0B19CA8065001E28DE /* syntax_iaoe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_iaoe.txt; path = patches/syntax_iaoe.txt; sourceTree = "<group>"; };
+		ED2B05DA1B4F2C11004A23A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = USBXHC_Envy.kext/Contents/Info.plist; sourceTree = "<group>"; };
 		ED84A43A1AE814FB00897847 /* SSDT9.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SSDT9.dsl; path = unpatched/SSDT9.dsl; sourceTree = "<group>"; };
 		ED84A43B1AE814FB00897847 /* SSDT8.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SSDT8.dsl; path = unpatched/SSDT8.dsl; sourceTree = "<group>"; };
 		ED84A43C1AE814FB00897847 /* SSDT7.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SSDT7.dsl; path = unpatched/SSDT7.dsl; sourceTree = "<group>"; };
@@ -54,6 +55,8 @@
 		ED84A45B1AE815F700897847 /* Platforms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Platforms.plist; path = Resources_IDT76e0_Envy/layout/Platforms.plist; sourceTree = "<group>"; };
 		ED84A45C1AE815F700897847 /* layout12.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = layout12.plist; path = Resources_IDT76e0_Envy/layout/layout12.plist; sourceTree = "<group>"; };
 		ED84A45D1AE815F700897847 /* ahhcd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ahhcd.plist; path = Resources_IDT76e0_Envy/ahhcd.plist; sourceTree = "<group>"; };
+		EDCBBC731B4F5EDD007F14C3 /* patch_backlight.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = patch_backlight.sh; sourceTree = "<group>"; };
+		EDCBBC741B4F5EDD007F14C3 /* Backlight.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Backlight.plist; sourceTree = "<group>"; };
 		EDE734D71AE87BB400B07AD4 /* syntax_dsdt_nvidia.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = syntax_dsdt_nvidia.txt; path = patches/syntax_dsdt_nvidia.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +72,8 @@
 				ED84A4581AE815E000897847 /* install_downloads.sh */,
 				ED84A4591AE815E000897847 /* download.sh */,
 				ED84A45A1AE815E000897847 /* config.plist */,
+				EDCBBC721B4F5EBC007F14C3 /* backlight */,
+				ED2B05DB1B4F2C1C004A23A9 /* USBXHC-Envy.kext */,
 				ED84A45E1AE8160700897847 /* audio */,
 				840152F1182AE48100D58B0A /* unpatched */,
 				840152FC182AE4C600D58B0A /* patches */,
@@ -133,6 +138,14 @@
 			path = patched;
 			sourceTree = "<group>";
 		};
+		ED2B05DB1B4F2C1C004A23A9 /* USBXHC-Envy.kext */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B05DA1B4F2C11004A23A9 /* Info.plist */,
+			);
+			name = "USBXHC-Envy.kext";
+			sourceTree = "<group>";
+		};
 		ED84A45E1AE8160700897847 /* audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +155,15 @@
 				ED84A4551AE815E000897847 /* patch_hda.sh */,
 			);
 			name = audio;
+			sourceTree = "<group>";
+		};
+		EDCBBC721B4F5EBC007F14C3 /* backlight */ = {
+			isa = PBXGroup;
+			children = (
+				EDCBBC731B4F5EDD007F14C3 /* patch_backlight.sh */,
+				EDCBBC741B4F5EDD007F14C3 /* Backlight.plist */,
+			);
+			name = backlight;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
