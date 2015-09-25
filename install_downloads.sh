@@ -143,7 +143,7 @@ fi
 install_kext AppleHDA_IDT76e0_Envy.kext
 
 #if [[ $MINOR_VER -ge 11 ]]; then
-    #install_kext USBXHC_Envy.kext
+    install_kext USBXHC_Envy.kext
     # create custom AppleBacklightInjector.kext and install
     #./patch_backlight.sh
     #install_kext AppleBacklightInjector.kext
