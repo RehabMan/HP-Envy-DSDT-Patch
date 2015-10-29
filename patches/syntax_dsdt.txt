@@ -17,3 +17,7 @@ External(_SB.PCI0.PEG0.PEGP, DeviceObj)\n
 %1
 end;
 
+# \_PR.CPU[1-7]._PPC is a method
+# Store to a method identifier is not valid
+into_all method code_regex (Store\s+\(NPS,\s+\\_PR\.CPU[1-7]\._PPC\)) replaceall_matched begin //%1 end;
+
