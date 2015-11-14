@@ -6,11 +6,150 @@
 	<dict>
 		<key>DSDT</key>
 		<dict>
+			<key>Patches</key>
+			<array>
+				<dict>
+					<key>Comment</key>
+					<string>change _OSI to XOSI</string>
+					<key>Find</key>
+					<data>X09TSQ==</data>
+					<key>Replace</key>
+					<data>WE9TSQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change EHC1 to EH01</string>
+					<key>Find</key>
+					<data>RUhDMQ==</data>
+					<key>Replace</key>
+					<data>RUgwMQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change EHC2 to EH02</string>
+					<key>Find</key>
+					<data>RUhDMg==</data>
+					<key>Replace</key>
+					<data>RUgwMg==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change GFX0 to IGPU</string>
+					<key>Find</key>
+					<data>R0ZYMA==</data>
+					<key>Replace</key>
+					<data>SUdQVQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change B0D3 to HDAU</string>
+					<key>Find</key>
+					<data>QjBEMw==</data>
+					<key>Replace</key>
+					<data>SERBVQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(XSEL,0,S) to XXEL</string>
+					<key>#Find</key>
+					<data>WFNFTAg=</data>
+					<key>Replace</key>
+					<data>WFhFTAg=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(GPRW,2,N) to XPRW</string>
+					<key>Find</key>
+					<data>R1BSVwI=</data>
+					<key>Replace</key>
+					<data>WFBSVwI=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(FRSP,0,N) to XRSP</string>
+					<key>Find</key>
+					<data>RlJTUAA=</data>
+					<key>Replace</key>
+					<data>WFJTUAA=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_Q13,0,S) to XQ13</string>
+					<key>Find</key>
+					<data>X1ExMwg=</data>
+					<key>Replace</key>
+					<data>WFExMwg=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_Q09,0,N) to XQ09</string>
+					<key>Find</key>
+					<data>X1EwOQA=</data>
+					<key>Replace</key>
+					<data>WFEwOQA=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_Q10,0,N) to XQ10</string>
+					<key>Find</key>
+					<data>X1ExMAA=</data>
+					<key>Replace</key>
+					<data>WFExMAA=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_Q11,0,N) to XQ11</string>
+					<key>Find</key>
+					<data>X1ExMQA=</data>
+					<key>Replace</key>
+					<data>WFExMQA=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(BTIF,1,S) to XTIF</string>
+					<key>Find</key>
+					<data>QlRJRgkIX1Rf</data>
+					<key>Replace</key>
+					<data>WFRJRgkIX1Rf</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(BTST,2,S) to XTST</string>
+					<key>Find</key>
+					<data>QlRTVAo=</data>
+					<key>Replace</key>
+					<data>WFRTVAo=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(ITLB,0,N) to XTLB</string>
+					<key>Find</key>
+					<data>SVRMQgA=</data>
+					<key>Replace</key>
+					<data>WFRMQgA=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(GBTI,1,N) to XBTI</string>
+					<key>Find</key>
+					<data>R0JUSQE=</data>
+					<key>Replace</key>
+					<data>WEJUSQE=</data>
+				</dict>
+			</array>
 			<key>Fixes</key>
 			<dict>
-				<key>FixRegions_10000000</key>
-				<true/>
 				<key>NewWay_80000000</key>
+				<true/>
+				<key>FIX_TMR_40000</key>
+				<true/>
+				<key>FIX_RTC_20000</key>
+				<true/>
+				<key>FixIPIC_0040</key>
+				<true/>
+				<key>FixHPET_0010</key>
+				<true/>
+				<key>FIX_WAK_200000</key>
 				<true/>
 			</dict>
 		</dict>
@@ -24,33 +163,14 @@
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
-			<true/>
-			<key>EnableC2</key>
-			<true/>
-			<key>EnableC4</key>
-			<true/>
-			<key>EnableC6</key>
-			<true/>
-			<key>EnableC7</key>
-			<true/>
+			<false/>
 			<key>Generate</key>
-			<dict>
-				<key>CStates</key>
-				<false/>
-				<key>PStates</key>
-				<false/>
-			</dict>
-			<key>PluginType</key>
-			<integer>1</integer>
+			<false/>
 		</dict>
 		<key>SortedOrder</key>
 		<array>
 			<string>SSDT.aml</string>
-			<string>SSDT-2.aml</string>
-			<string>SSDT-3.aml</string>
-			<string>SSDT-4.aml</string>
-			<string>SSDT-5.aml</string>
-			<string>SSDT-7.aml</string>
+			<string>SSDT-HACK.aml</string>
 		</array>
 	</dict>
 	<key>Boot</key>
@@ -77,12 +197,200 @@
 	</dict>
 	<key>Devices</key>
 	<dict>
+		<key>Arbitrary</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Intel HDA</string>
+				<key>PciAddr</key>
+				<string>00:1B.00</string>
+				<key>CustomProperties</key>
+				<array>
+					<dict>
+						<key>Key</key>
+						<string>layout-id</string>
+						<key>Value</key>
+						<data>AwAAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>PinConfigurations</string>
+						<key>Value</key>
+						<data></data>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Intel HDMI HDA</string>
+				<key>PciAddr</key>
+				<string>00:03.00</string>
+				<key>CustomProperties</key>
+				<array>
+					<dict>
+						<key>Key</key>
+						<string>layout-id</string>
+						<key>Value</key>
+						<data>AwAAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>hda-gfx</string>
+						<key>Value</key>
+						<string>onboard-1</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Intel EHCI #1</string>
+				<key>PciAddr</key>
+				<string>00:1D.00</string>
+				<key>CustomProperties</key>
+				<array>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-id</string>
+						<key>Value</key>
+						<data>cHIAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-vendor-id</string>
+						<key>Value</key>
+						<data>hoAAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-available</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra</string>
+						<key>Value</key>
+						<integer>2200</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra-in-sleep</string>
+						<key>Value</key>
+						<integer>1600</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,max-port-current-in-sleep</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Intel EHCI #2</string>
+				<key>PciAddr</key>
+				<string>00:1A.00</string>
+				<key>CustomProperties</key>
+				<array>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-id</string>
+						<key>Value</key>
+						<data>cHIAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-vendor-id</string>
+						<key>Value</key>
+						<data>hoAAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-available</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra</string>
+						<key>Value</key>
+						<integer>2200</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra-in-sleep</string>
+						<key>Value</key>
+						<integer>1600</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,max-port-current-in-sleep</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Intel XHCI</string>
+				<key>PciAddr</key>
+				<string>00:14.00</string>
+				<key>CustomProperties</key>
+				<array>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-id</string>
+						<key>Value</key>
+						<data>cHIAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>subsystem-vendor-id</string>
+						<key>Value</key>
+						<data>hoAAAA==</data>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-available</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra</string>
+						<key>Value</key>
+						<integer>2200</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,current-extra-in-sleep</string>
+						<key>Value</key>
+						<integer>1600</integer>
+					</dict>
+					<dict>
+						<key>Key</key>
+						<string>AAPL,max-port-current-in-sleep</string>
+						<key>Value</key>
+						<integer>2100</integer>
+					</dict>
+					<dict>
+						<key>Comment</key>
+						<string>No XHC to EHC port routing for USB2</string>
+						<key>Key</key>
+						<string>#RM,pr2-force</string>
+						<key>Value</key>
+						<data>/z8AAA==</data>
+					</dict>
+				</array>
+			</dict>
+		</array>
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
 			<integer>0</integer>
 		</dict>
-		<key>FakeID</key>
+		<key>#FakeID</key>
 		<dict>
 			<key>IntelGFX</key>
 			<string>0x04128086</string>
@@ -126,7 +434,7 @@
 		<key>Theme</key>
 		<string>bluemac</string>
 	</dict>
-	<key>Graphics</key>
+	<key>#Graphics</key>
 	<dict>
 		<key>Inject</key>
 		<dict>
@@ -175,16 +483,6 @@
 				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>PQAAAAA=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Enable USB3 post wake</string>
-				<key>Find</key>
-				<data>xoDIAAAAAQ==</data>
-				<key>Name</key>
-				<string>#AppleUSBXHCI</string>
-				<key>Replace</key>
-				<data>xoDIAAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -248,26 +546,6 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Boot graphics glitch, 10.10.0/10.10.1 (1 of 2)</string>
-				<key>Find</key>
-				<data>hcB0XUg=</data>
-				<key>Name</key>
-				<string>#IOGraphicsFamily</string>
-				<key>Replace</key>
-				<data>McB0W0g=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Boot graphics glitch, 10.10.0/10.10.1 (2 of 2)</string>
-				<key>Find</key>
-				<data>QYjE6wM=</data>
-				<key>Name</key>
-				<string>#IOGraphicsFamily</string>
-				<key>Replace</key>
-				<data>QYjE6yM=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>Boot graphics glitch, 10.10.x/10.11.x</string>
 				<key>Find</key>
 				<data>AQAAdRc=</data>
@@ -290,7 +568,7 @@
 		<key>ProductName</key>
 		<string>MacBookPro11,1</string>
 		<key>Trust</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>

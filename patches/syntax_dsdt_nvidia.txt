@@ -1,4 +1,0 @@
-# syntax fixes for dsdt.dsl, just in the case that nvidia is present...
-
-#into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0,.*\) remove_matched;
-#into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP,.*\) remove_matched;
