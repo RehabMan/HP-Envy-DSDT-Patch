@@ -72,7 +72,6 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
     }
 #endif
 
-#if 0   //REVIEW: disabled for now
     // Override for USBInjectAll.kext (not currently using USBInjectAll.kext)
     Device(UIAC)
     {
@@ -117,11 +116,6 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                         "UsbConnector", 255,
                         "port", Buffer() { 0x05, 0, 0, 0 },
                     },
-                    "HS06", Package()
-                    {
-                        "UsbConnector", 0,
-                        "port", Buffer() { 0x06, 0, 0, 0 },
-                    },
                     "HS07", Package()
                     {
                         "UsbConnector", 255,
@@ -147,26 +141,14 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                         "UsbConnector", 3,
                         "port", Buffer() { 0x13, 0, 0, 0 },
                     },
-                    "SS05", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x14, 0, 0, 0 },
-                    },
-                    "SS06", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x15, 0, 0, 0 },
-                    },
                 },
             },
         })
     }
-#endif
 
 //
 // Disabling EHCI #1
 //
-#if 0
     External(_SB.PCI0.EH01, DeviceObj)
     Scope(_SB.PCI0)
     {
@@ -208,7 +190,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             }
         }
     }
-#endif
+
 
 //
 // Backlight control
@@ -323,12 +305,6 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         // overrides for VoodooPS2 configuration... (much more could be done here)
         Name(RMCF, Package()
         {
-            #if 0
-            "Controller", Package()
-            {
-                "WakeDelay", 0,
-            },
-            #endif
             "Sentelic FSP", Package()
             {
                 "DisableDevice", ">y",
