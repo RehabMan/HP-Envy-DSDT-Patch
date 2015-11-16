@@ -61,7 +61,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         Return(XPRW(Arg0, Arg1))
     }
 
-    // Override for USBInjectAll.kext (not currently using USBInjectAll.kext)
+    // Override for USBInjectAll.kext
     Device(UIAC)
     {
         Name(_HID, "UIA00000")
