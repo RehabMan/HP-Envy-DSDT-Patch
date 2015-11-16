@@ -50,14 +50,6 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XSEL,0,S) to XXEL</string>
-					<key>#Find</key>
-					<data>WFNFTAg=</data>
-					<key>Replace</key>
-					<data>WFhFTAg=</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>change Method(GPRW,2,N) to XPRW</string>
 					<key>Find</key>
 					<data>R1BSVwI=</data>

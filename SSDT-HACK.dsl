@@ -61,17 +61,6 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         Return(XPRW(Arg0, Arg1))
     }
 
-#if 0
-    // In DSDT, native XSEL is renamed XXEL with Clover binpatch.
-    // Calls to it will land here.
-    // ... which does nothing
-    External(_SB.PCI0.XHC, DeviceObj)
-    Method(_SB.PCI0.XHC.XSEL)
-    {
-        // nothing
-    }
-#endif
-
     // Override for USBInjectAll.kext (not currently using USBInjectAll.kext)
     Device(UIAC)
     {
