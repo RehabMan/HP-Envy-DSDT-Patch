@@ -728,32 +728,26 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                 {
                     Store (Arg0, BSEL)
                     Store (Package (0x03)
-                        {
-                            Zero, 
-                            0x80, 
-                            Buffer (0x80) {}
-                        }, Local0)
+                    {
+                        Zero,
+                        0x80,
+                        Buffer (0x80) {}
+                    }, Local0)
                     Store (B1B2(DC00,DC01), Index (DerefOf (Index (Local0, 0x02)), Zero))
-                    Store (ShiftRight (B1B2(DC00,DC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), One
-                        ))
+                    Store (ShiftRight (B1B2(DC00,DC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), One))
                     Store (B1B2(FC00,FC01), Index (DerefOf (Index (Local0, 0x02)), 0x02))
-                    Store (ShiftRight (B1B2(FC00,FC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x03
-                        ))
+                    Store (ShiftRight (B1B2(FC00,FC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x03))
                     Store (B1B2(RC00,RC01), Index (DerefOf (Index (Local0, 0x02)), 0x04))
-                    Store (ShiftRight (B1B2(RC00,RC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x05
-                        ))
+                    Store (ShiftRight (B1B2(RC00,RC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x05))
                     Store (B1B2(CC00,CC01), Index (DerefOf (Index (Local0, 0x02)), 0x08))
-                    Store (ShiftRight (B1B2(CC00,CC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x09
-                        ))
+                    Store (ShiftRight (B1B2(CC00,CC01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x09))
                     Store (B1B2(BT00,BT01), Local1)
                     Subtract (Local1, 0x0AAC, Local1)
                     Divide (Local1, 0x0A, Local2, Local3)
                     Store (Local3, Index (DerefOf (Index (Local0, 0x02)), 0x0A))
-                    Store (ShiftRight (Local3, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0B
-                        ))
+                    Store (ShiftRight (Local3, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0B))
                     Store (B1B2(PV00,PV01), Index (DerefOf (Index (Local0, 0x02)), 0x0C))
-                    Store (ShiftRight (B1B2(PV00,PV01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0D
-                        ))
+                    Store (ShiftRight (B1B2(PV00,PV01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0D))
                     Store (B1B2(PR00,PR01), Local1)
                     If (Local1)
                     {
@@ -764,31 +758,23 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                     }
 
                     Store (Local1, Index (DerefOf (Index (Local0, 0x02)), 0x0E))
-                    Store (ShiftRight (Local1, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0F
-                        ))
+                    Store (ShiftRight (Local1, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x0F))
                     Store (B1B2(DV00,DV01), Index (DerefOf (Index (Local0, 0x02)), 0x10))
-                    Store (ShiftRight (B1B2(DV00,DV01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x11
-                        ))
+                    Store (ShiftRight (B1B2(DV00,DV01), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x11))
                     Store (BST0, Index (DerefOf (Index (Local0, 0x02)), 0x12))
-                    Store (ShiftRight (BST0, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x13
-                        ))
+                    Store (ShiftRight (BST0, 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x13))
                     Store (B1B2(CX10,CX11), Index (DerefOf (Index (Local0, 0x02)), 0x14))
-                    Store (ShiftRight (B1B2(CX10,CX11), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x15
-                        ))
+                    Store (ShiftRight (B1B2(CX10,CX11), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x15))
                     Store (B1B2(CV20,CV21), Index (DerefOf (Index (Local0, 0x02)), 0x16))
-                    Store (ShiftRight (B1B2(CV20,CV21), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x17
-                        ))
+                    Store (ShiftRight (B1B2(CV20,CV21), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x17))
                     Store (B1B2(CV30,CV31), Index (DerefOf (Index (Local0, 0x02)), 0x18))
-                    Store (ShiftRight (B1B2(CV30,CV31), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x19
-                        ))
+                    Store (ShiftRight (B1B2(CV30,CV31), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x19))
                     Store (B1B2(CV40,CV41), Index (DerefOf (Index (Local0, 0x02)), 0x1A))
-                    Store (ShiftRight (B1B2(CV40,CV41), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x1B
-                        ))
+                    Store (ShiftRight (B1B2(CV40,CV41), 0x08), Index (DerefOf (Index (Local0, 0x02)), 0x1B))
                     CreateField (DerefOf (Index (Local0, 0x02)), 0xE0, 0x80, BTSN)
                     Store (GBSS (B1B2(SN00,SN01),B1B2(MD00,MD01)), BTSN)
                     Store (RDN0(), Local1)
-                    CreateField (DerefOf (Index (Local0, 0x02)), 0x0160, Multiply (SizeOf (Local1), 0x08), 
-                        BMAN)
+                    CreateField (DerefOf (Index (Local0, 0x02)), 0x0160, Multiply (SizeOf (Local1), 0x08), BMAN)
                     Store (Local1, BMAN)
                     CreateField (DerefOf (Index (Local0, 0x02)), 0x01F0, 0x80, CTN)
                     Store (RCT0(), CTN)
@@ -829,10 +815,10 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             Else
             {
                 Store (Package (0x02)
-                    {
-                        0x0D, 
-                        Zero
-                    }, Local0)
+                {
+                    0x0D,
+                    Zero
+                }, Local0)
             }
 
             Release (ECMX)
@@ -865,7 +851,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             External(\_PR.CPU6, DeviceObj)
             External(\_PR.CPU7, DeviceObj)
             External(\_PR.CPU0._PPC, IntObj)
-            
+
             Subtract (NPS, One, NPS)
             If (CondRefOf (\_PR.CPU0._PPC, Local0))
             {
