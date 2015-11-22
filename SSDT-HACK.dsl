@@ -105,11 +105,17 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                         "UsbConnector", 255,
                         "port", Buffer() { 0x05, 0, 0, 0 },
                     },
-                    "HS07", Package()
+                    "HS07", Package()  // camera
                     {
                         "UsbConnector", 255,
                         "port", Buffer() { 0x07, 0, 0, 0 },
                     },
+                    "HS13", Package() // touchscreen
+                    {
+                        "UsbConnector", 255,
+                        "port", Buffer() { 0x0d, 0, 0, 0 },
+                    },
+                    // HS14 is finger print reader, not supported
                     "SS01", Package()
                     {
                         "UsbConnector", 3,
