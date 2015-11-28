@@ -10,9 +10,9 @@
 #
 
 BUILDDIR=./build
-RESOURCES=./Resources_IDT76e0_Envy
-HDAINJECT=AppleHDA_IDT76e0_Envy.kext
-HDALAYOUT=layout12
+HDA=IDT76e0_Envy
+RESOURCES=./Resources_$(HDA)
+HDAINJECT=AppleHDA_$(HDA).kext
 USBINJECT=USBXHC_Envy.kext
 BACKLIGHTINJECT=AppleBacklightInjector.kext
 
@@ -53,18 +53,9 @@ install: $(PRODUCTS)
 	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-7.aml
 	cp $(BUILDDIR)/SSDT-HACK.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-HACK.aml
 
-$(HDAINJECT): $(RESOURCES)/ahhcd.plist $(RESOURCES)/layout/Platforms.xml.zlib $(RESOURCES)/layout/$(HDALAYOUT).xml.zlib ./patch_hda.sh
-	./patch_hda.sh
+$(HDAINJECT): $(RESOURCES)/*.plist ./patch_hda.sh
+	./patch_hda.sh $(HDA)
 	touch $@
-
-$(RESOURCES)/layout/Platforms.xml.zlib: $(RESOURCES)/layout/Platforms.plist $(SLE)/AppleHDA.kext/Contents/Resources/Platforms.xml.zlib
-	./tools/zlib inflate $(SLE)/AppleHDA.kext/Contents/Resources/Platforms.xml.zlib >/tmp/rm_Platforms.plist
-	/usr/libexec/plistbuddy -c "Delete ':PathMaps'" /tmp/rm_Platforms.plist
-	/usr/libexec/plistbuddy -c "Merge $(RESOURCES)/layout/Platforms.plist" /tmp/rm_Platforms.plist
-	./tools/zlib deflate /tmp/rm_Platforms.plist >$@
-
-$(RESOURCES)/layout/$(HDALAYOUT).xml.zlib: $(RESOURCES)/layout/$(HDALAYOUT).plist
-	./tools/zlib deflate $< >$@
 
 $(BACKLIGHTINJECT): Backlight.plist patch_backlight.sh
 	./patch_backlight.sh
