@@ -186,7 +186,6 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         }
     }
 
-
 //
 // Backlight control
 //
@@ -276,6 +275,33 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                 }
                 Return(Local1)
             }
+        }
+    }
+
+//
+// Fix SATA in RAID mode
+//
+
+    External(_SB.PCI0.SAT0, DeviceObj)
+    Scope(_SB.PCI0.SAT0)
+    {
+        OperationRegion(SAT4, PCI_Config, 2, 2)
+        Field(SAT4, AnyAcc, NoLock, Preserve)
+        {
+            SDID,16
+        }
+        Method(_DSM, 4)
+        {
+            If (LEqual(Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+            If (LEqual(SDID, 0x282a))
+            {
+                // 8086:282a is RAID mode, remap to supported 8086:2829
+                Return (Package()
+                {
+                    "compatible", Buffer() { "pci8086,2829" },
+                })
+            }
+            Return (Package() { })
         }
     }
 
