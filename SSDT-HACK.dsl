@@ -298,7 +298,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                 // 8086:282a is RAID mode, remap to supported 8086:2829
                 Return (Package()
                 {
-                    "compatible", Buffer() { "pci8086,2829" },
+                    "device-id", Buffer() { 0x29, 0x28, 0, 0 },
                 })
             }
             Return (Package() { })
