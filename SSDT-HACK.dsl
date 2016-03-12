@@ -6,7 +6,7 @@
 
 // Note: No solution for missing IAOE here, but so far, not a problem.
 
-DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
+DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
 {
     External(_SB.PCI0, DeviceObj)
     External(_SB.PCI0.LPCB, DeviceObj)
@@ -35,7 +35,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             //"Windows 2013",       // Windows 8.1/Windows Server 2012 R2
             //"Windows 2015",       // Windows 10/Windows Server TP
         }, Local0)
-        Return (LNotEqual(Match(Local0, MEQ, Arg0, MTR, 0, 0), Ones))
+        Return (Ones != Match(Local0, MEQ, Arg0, MTR, 0, 0))
     }
 
 //
@@ -55,8 +55,8 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
     // of the return package.
     Method(GPRW, 2)
     {
-        If (LEqual(Arg0, 0x0d)) { Return(Package() { 0x0d, 0 }) }
-        If (LEqual(Arg0, 0x6d)) { Return(Package() { 0x6d, 0 }) }
+        If (0x0d == Arg0) { Return(Package() { 0x0d, 0 }) }
+        If (0x6d == Arg0) { Return(Package() { 0x6d, 0 }) }
         External(\XPRW, MethodObj)
         Return(XPRW(Arg0, Arg1))
     }
@@ -164,7 +164,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                 RCB1, 32, // Root Complex Base Address
             }
             // address is in bits 31:14
-            OperationRegion(FDM1, SystemMemory, Add(And(RCB1,Not(Subtract(ShiftLeft(1,14),1))),0x3418), 4)
+            OperationRegion(FDM1, SystemMemory, (RCB1 & Not((1<<14)-1)) + 0x3418, 4)
             Field(FDM1, DWordAcc, NoLock, Preserve)
             {
                 ,15,    // skip first 15 bits
@@ -179,9 +179,9 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             {
                 // disable EHCI#1
                 // put EHCI#1 in D3hot (sleep mode)
-                Store(3, ^^EH01.PSTE)
+                ^^EH01.PSTE = 3
                 // disable EHCI#1 PCI space
-                Store(1, ^^LPCB.FDE1)
+                ^^LPCB.FDE1 = 1
             }
         }
     }
@@ -233,7 +233,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
                 Name(_CID, "diagsvault")
                 Method(_DSM, 4)
                 {
-                    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                    If (!Arg2) { Return (Buffer() { 0x03 } ) }
                     Return (Package() { "address", 0x57 })
                 }
             }
@@ -252,26 +252,26 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
             // inject properties for integrated graphics on IGPU
             Method(_DSM, 4)
             {
-                If (LEqual(Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Store(Package()
+                If (!Arg2) { Return (Buffer() { 0x03 } ) }
+                Local1 = Package()
                 {
                     "model", Buffer() { "place holder" },
                     "device-id", Buffer() { 0x12, 0x04, 0x00, 0x00 },
                     "hda-gfx", Buffer() { "onboard-1" },
                     "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },
-                }, Local1)
-                Store(GDID, Local0)
-                If (LEqual(Local0, 0x0a16)) { Store("Intel HD Graphics 4400", Index(Local1,1)) }
-                ElseIf (LEqual(Local0, 0x0416)) { Store("Intel HD Graphics 4600", Index(Local1,1)) }
-                ElseIf (LEqual(Local0, 0x0a1e)) { Store("Intel HD Graphics 4200", Index(Local1,1)) }
+                }
+                Local0 = GDID
+                If (0x0a16 == Local0) { Local1[1] = "Intel HD Graphics 4400" }
+                ElseIf (0x0416 == Local0) { Local1[1] = "Intel HD Graphics 4600" }
+                ElseIf (0x0a1e == Local0) { Local1[1] = "Intel HD Graphics 4200" }
                 Else
                 {
                     // others (HD5000 and Iris) are natively supported
-                    Store(Package()
+                    Local1 = Package()
                     {
                         "hda-gfx", Buffer() { "onboard-1" },
                         "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },
-                    }, Local1)
+                    }
                 }
                 Return(Local1)
             }
@@ -292,7 +292,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         }
         Method(_DSM, 4)
         {
-            If (LEqual(Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+            If (!Arg2) { Return (Buffer() { 0x03 } ) }
             If (LEqual(SDID, 0x282a))
             {
                 // 8086:282a is RAID mode, remap to supported 8086:2829
@@ -315,7 +315,7 @@ DefinitionBlock ("SSDT-HACK.aml", "SSDT", 1, "hack", "hack", 0x00003000)
         // Select specific keyboard map in VoodooPS2Keyboard.kext
         Method(_DSM, 4)
         {
-            If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+            If (!Arg2) { Return (Buffer() { 0x03 } ) }
             Return (Package()
             {
                 "RM,oem-id", "HPQOEM",
