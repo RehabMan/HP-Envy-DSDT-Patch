@@ -293,7 +293,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         Method(_DSM, 4)
         {
             If (!Arg2) { Return (Buffer() { 0x03 } ) }
-            If (LEqual(SDID, 0x282a))
+            If (0x282a == SDID)
             {
                 // 8086:282a is RAID mode, remap to supported 8086:2829
                 Return (Package()

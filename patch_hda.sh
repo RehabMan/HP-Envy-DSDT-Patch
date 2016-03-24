@@ -66,7 +66,7 @@ fi
 
 if [[ "$1" == "" ]]; then
     echo Usage: patch_hda.sh {codec}
-    echo Example: patch_hda.sh ALC892
+    echo Example: patch_hda.sh IDT76e0_Envy
     exit
 fi
 
