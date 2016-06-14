@@ -67,12 +67,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         Name(_HID, "UIA00000")
         Name(RMCF, Package()
         {
-            // EH01 has no ports (XHCIMux is used to force USB3 routing OFF)
-            "EH01", Package()
-            {
-                "port-count", Buffer() { 0, 0, 0, 0 },
-                "ports", Package() { },
-            },
+            // EH01 is disabled
             // EH02 not present
             // XHC overrides
             "8086_8xxx", Package()

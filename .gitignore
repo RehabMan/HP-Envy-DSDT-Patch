@@ -7,6 +7,7 @@ unpatched/ssdt*.dsl
 unpatched/dsdt.dsl
 patched/dsdt.dsl
 build/*
+!build/readme.txt
 Resources_IDT76e0_Envy/layout/*.zlib
 envy15.xcodeproj/project.xcworkspace/xcuserdata
 envy15.xcodeproj/project.xcworkspace/xcshareddata/envy15.xccheckout
