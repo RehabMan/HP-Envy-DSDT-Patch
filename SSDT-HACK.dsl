@@ -31,7 +31,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
             "Windows 2006 SP1",     // Windows Vista SP1
             //"Windows 2006.1",     // Windows Server 2008
             "Windows 2009",         // Windows 7/Windows Server 2008 R2
-            "Windows 2012",         // Windows 8/Windows Sesrver 2012
+            "Windows 2012",         // Windows 8/Windows Server 2012
             //"Windows 2013",       // Windows 8.1/Windows Server 2012 R2
             //"Windows 2015",       // Windows 10/Windows Server TP
         }, Local0)
@@ -348,6 +348,10 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
                     "e010=4d",  // previous track
                 },
             },
+            "Synaptics TouchPad", Package()
+            {
+                "DynamicEWMode", ">y",
+            },
         })
     }
 
@@ -381,7 +385,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
     }
 
 //
-// Battery Status
+// Battery Status (based on patching native DSDT with "HP Envy 17t")
 //
 
     External(_TZ.TZ00, DeviceObj)
@@ -490,15 +494,13 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         }
         Method (RECB, 2, Serialized)
         {
-            ShiftRight(Arg1, 3, Arg1)
+            Arg1 >>= 3
             Name(TEMP, Buffer(Arg1) { })
-            Add(Arg0, Arg1, Arg1)
-            Store(0, Local0)
-            While (LLess(Arg0, Arg1))
+            Local0 = 0
+            For (Arg1 += Arg0, Arg0 < Arg1, Arg0++)
             {
-                Store(RE1B(Arg0), Index(TEMP, Local0))
-                Increment(Arg0)
-                Increment(Local0)
+                TEMP[Local0] = RE1B(Arg0)
+                Local0++
             }
             Return(TEMP)
         }
