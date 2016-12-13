@@ -457,40 +457,40 @@
 			<dict>
 				<key>Comment</key>
 				<string>AppleHDA IDT 76e0 (1 of 4)</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
 				<key>Find</key>
 				<data>PYsZ1BE=</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>PeB2HRE=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AppleHDA IDT 76e0 (2 of 4)</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
 				<key>Find</key>
 				<data>PYQZ1BE=</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>PQAAAAA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AppleHDA IDT 76e0 (3 of 4)</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
 				<key>Find</key>
 				<data>PYMZ1BE=</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>PQAAAAA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AppleHDA IDT 76e0 (4 of 4)</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
 				<key>Find</key>
 				<data>PYoZ1BE=</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>PQAAAAA=</data>
 			</dict>
@@ -500,7 +500,7 @@
 				<key>MatchOS</key>
 				<string>10.9.5</string>
 				<key>Name</key>
-				<string>AirPortBrcm4360</string>
+				<string>com.apple.driver.AirPort.Brcm4360</string>
 				<key>Find</key>
 				<data>WFQAIBcnIAAA</data>
 				<key>Replace</key>
@@ -510,23 +510,23 @@
 				<key>Comment</key>
 				<string>10.10.2-5Ghz US FCC, the-darkvoid</string>
 				<key>MatchOS</key>
-				<string>10.10.x,10.11.x,10.12.x</string>
+				<string>10.10.x,10.11.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AirPort.Brcm4360</string>
 				<key>Find</key>
 				<data>QYP8/3QsSA==</data>
 				<key>Replace</key>
 				<data>ZscGVVPrKw==</data>
-				<key>Name</key>
-				<string>AirPortBrcm4360</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AirPortBrcm4360 - fcvo, 10.12.x (credit the-darkvoid)</string>
 				<key>MatchOS</key>
 				<string>10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AirPort.Brcm4360</string>
 				<key>Find</key>
 				<data>gflSqgAAdSk=</data>
-				<key>Name</key>
-				<string>AirPortBrcm4360</string>
 				<key>Replace</key>
 				<data>gflSqgAAZpA=</data>
 			</dict>
@@ -535,10 +535,10 @@
 				<string>10.10.2-BT4LE-Handoff-Hotspot, Dokterdok</string>
 				<key>MatchOS</key>
 				<string>10.10.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOBluetoothFamily</string>
 				<key>Find</key>
 				<data>SIXAdFwPt0g=</data>
-				<key>Name</key>
-				<string>IOBluetoothFamily</string>
 				<key>Replace</key>
 				<data>Qb4PAAAA61k=</data>
 			</dict>
@@ -547,40 +547,40 @@
 				<string>10.11.dp1+ BT4LE-Handoff-Hotspot, credit RehabMan based on Dokterdok original</string>
 				<key>MatchOS</key>
 				<string>10.11.x,10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOBluetoothFamily</string>
 				<key>Find</key>
 				<data>SIX/dEdIiwc=</data>
-				<key>Name</key>
-				<string>IOBluetoothFamily</string>
 				<key>Replace</key>
 				<data>Qb4PAAAA60Q=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>0x0a260006 9MB cursor bytes, vbo</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
 				<key>Find</key>
 				<data>BgAmCgEDAwMAAAACAAAwAQAAYAA=</data>
-				<key>Name</key>
-				<string>AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>BgAmCgEDAwMAAAACAAAwAQAAkAA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>HDMI-audio, port 0204, 0x0a260005 0x0a260006</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
 				<key>Find</key>
 				<data>AgQJAAAEAACHAAAA</data>
-				<key>Name</key>
-				<string>AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>AgQJAAAIAACHAAAA</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Enable TRIM for non-Apple SSDs</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOAHCIBlockStorage</string>
 				<key>Find</key>
 				<data>AEFQUExFIFNTRAA=</data>
-				<key>Name</key>
-				<string>IOAHCIBlockStorage</string>
 				<key>Replace</key>
 				<data>AAAAAAAAAAAAAAA=</data>
 			</dict>
@@ -589,10 +589,10 @@
 				<string>Boot graphics glitch, 10.10.x/10.11.x</string>
 				<key>MatchOS</key>
 				<string>10.10.x,10.11.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
 				<key>Find</key>
 				<data>AQAAdRc=</data>
-				<key>Name</key>
-				<string>IOGraphicsFamily</string>
 				<key>Replace</key>
 				<data>AQAAdBc=</data>
 			</dict>
@@ -601,10 +601,10 @@
 				<string>Boot graphics glitch, 10.12.dp1 (credit denskop)</string>
 				<key>MatchOS</key>
 				<string>10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
 				<key>Find</key>
 				<data>AQAAdSU=</data>
-				<key>Name</key>
-				<string>IOGraphicsFamily</string>
 				<key>Replace</key>
 				<data>AQAA6yU=</data>
 			</dict>
