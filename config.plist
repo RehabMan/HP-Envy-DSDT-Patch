@@ -496,6 +496,32 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
+				<string>AppleHDA anti-pop patch #1 (credit AppleALC)</string>
+				<key>MatchOS</key>
+				<string>10.11.x,10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
+				<key>Find</key>
+				<data>QcYGAEiLu2g=</data>
+				<key>Replace</key>
+				<data>QcYGAUiLu2g=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA anti-pop patch #2 (credit AppleALC)</string>
+				<key>MatchOS</key>
+				<string>10.11.x,10.12.x</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
+				<key>Find</key>
+				<data>QcaGQwEAAAA=</data>
+				<key>Replace</key>
+				<data>QcaGQwEAAAE=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>10.9.5 5Ghz US FCC, svko</string>
 				<key>MatchOS</key>
 				<string>10.9.5</string>
