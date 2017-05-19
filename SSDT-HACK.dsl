@@ -39,6 +39,20 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
     }
 
 //
+// Power management with X86PlatformPlugin.kext
+//
+
+    External(\_PR.CPU0, DeviceObj)
+    Method (\_PR.CPU0._DSM, 4)
+    {
+        If (!Arg2) { Return (Buffer() { 0x03 } ) }
+        Return (Package()
+        {
+            "plugin-type", 1
+        })
+    }
+
+//
 // ACPISensors configuration (ACPISensors.kext is not installed by default)
 //
 
@@ -505,8 +519,8 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         })
     }
 
-    External(_SB.PCI0.LPCB.H_EC, DeviceObj)
-    Scope(_SB.PCI0.LPCB.H_EC)
+    External(_SB.PCI0.LPCB.EC, DeviceObj)
+    Scope(_SB.PCI0.LPCB.EC)
     {
         // The native _Qxx methods in DSDT are renamed XQxx,
         // so notifications from the EC driver will land here.
@@ -544,13 +558,13 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         // FRSP renamed to XRSP in config.plist
         Method (FRSP, 0, NotSerialized)
         {
-            Acquire (\_SB.PCI0.LPCB.H_EC.ECMX, 0xFFFF)
-            If (\_SB.PCI0.LPCB.H_EC.ECRG)
+            Acquire (\_SB.PCI0.LPCB.EC.ECMX, 0xFFFF)
+            If (\_SB.PCI0.LPCB.EC.ECRG)
             {
-                Store (B1B2(\_SB.PCI0.LPCB.H_EC.FNR0,\_SB.PCI0.LPCB.H_EC.FNR1), Local1)
+                Store (B1B2(\_SB.PCI0.LPCB.EC.FNR0,\_SB.PCI0.LPCB.EC.FNR1), Local1)
             }
 
-            Release (\_SB.PCI0.LPCB.H_EC.ECMX)
+            Release (\_SB.PCI0.LPCB.EC.ECMX)
             Return (Local1)
         }
     }
@@ -562,7 +576,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "hack", 0)
         "StartupDelay", 10,
     })
 
-    Scope(_SB.PCI0.LPCB.H_EC)
+    Scope(_SB.PCI0.LPCB.EC)
     {
         // This is an override for battery methods that access EC fields
         // larger than 8-bit.
