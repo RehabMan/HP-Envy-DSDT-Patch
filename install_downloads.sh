@@ -163,18 +163,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # install (injector) kexts in the repo itself
-install_kext AppleHDA_IDT76e0_Envy.kext
+HDA=IDT76e0_Envy
+./patch_hda.sh "$HDA"
+install_kext AppleHDA_$HDA.kext
 
-#if [[ 0 == 1 && $MINOR_VER -ge 11 ]]; then
-    #install_kext USBXHC_Envy.kext
-    # create custom AppleBacklightInjector.kext and install
-    #./patch_backlight.sh
-    #install_kext AppleBacklightInjector.kext
-    # remove ACPIBacklight.kext if it is installed (doesn't work with 10.11)
-    #if [ -d $SLE/ACPIBacklight.kext ]; then
-    #    $SUDO rm -Rf $SLE/ACPIBacklight.kext
-    #fi
-#fi
 # USBXHC_Envy.kext is not used any more (using USBInjectAll.kext instead)
 $SUDO rm -Rf $SLE/USBXHC_Envy.kext $KEXTDEST/USBXHC_Envy.kext
 

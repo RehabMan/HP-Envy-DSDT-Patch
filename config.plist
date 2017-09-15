@@ -175,11 +175,6 @@
 			<key>Generate</key>
 			<false/>
 		</dict>
-		<key>SortedOrder</key>
-		<array>
-			<string>SSDT.aml</string>
-			<string>SSDT-HACK.aml</string>
-		</array>
 	</dict>
 	<key>Boot</key>
 	<dict>
@@ -506,7 +501,7 @@
 				<key>Comment</key>
 				<string>AppleHDA anti-pop patch #1 (credit AppleALC)</string>
 				<key>MatchOS</key>
-				<string>10.11.x,10.12.x</string>
+				<string>10.11.x,10.12.x,10.13.x</string>
 				<key>Name</key>
 				<string>com.apple.driver.AppleHDA</string>
 				<key>Find</key>
@@ -518,7 +513,7 @@
 				<key>Comment</key>
 				<string>AppleHDA anti-pop patch #2 (credit AppleALC)</string>
 				<key>MatchOS</key>
-				<string>10.11.x,10.12.x</string>
+				<string>10.11.x,10.12.x,10.13.x</string>
 				<key>Disabled</key>
 				<true/>
 				<key>Name</key>
@@ -620,33 +615,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Boot graphics glitch, 10.10.x/10.11.x</string>
-				<key>MatchOS</key>
-				<string>10.10.x,10.11.x</string>
-				<key>Name</key>
-				<string>com.apple.iokit.IOGraphicsFamily</string>
-				<key>Find</key>
-				<data>AQAAdRc=</data>
-				<key>Replace</key>
-				<data>AQAAdBc=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Boot graphics glitch, 10.12.dp1 (credit denskop)</string>
-				<key>MatchOS</key>
-				<string>10.12.x</string>
-				<key>Name</key>
-				<string>com.apple.iokit.IOGraphicsFamily</string>
-				<key>Find</key>
-				<data>AQAAdSU=</data>
-				<key>Replace</key>
-				<data>AQAA6yU=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>change F%uT%04x to F%uTxxxx in AppleBacklightInjector.kext (credit RehabMan)</string>
-				<key>Disabled</key>
-				<false/>
 				<key>Name</key>
 				<string>com.apple.driver.AppleBacklight</string>
 				<key>Find</key>
