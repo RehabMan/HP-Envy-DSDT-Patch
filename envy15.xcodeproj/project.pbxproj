@@ -17,7 +17,7 @@
 		ED84A4591AE815E000897847 /* download.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = download.sh; sourceTree = "<group>"; };
 		ED84A45A1AE815E000897847 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		ED84A45B1AE815F700897847 /* Platforms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Platforms.plist; path = Resources_IDT76e0_Envy/Platforms.plist; sourceTree = "<group>"; };
-		ED84A45C1AE815F700897847 /* layout12.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = layout12.plist; path = Resources_IDT76e0_Envy/layout12.plist; sourceTree = "<group>"; };
+		ED84A45C1AE815F700897847 /* layout13.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = layout13.plist; path = Resources_IDT76e0_Envy/layout13.plist; sourceTree = "<group>"; };
 		ED84A45D1AE815F700897847 /* ahhcd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ahhcd.plist; path = Resources_IDT76e0_Envy/ahhcd.plist; sourceTree = "<group>"; };
 		EDCBBC731B4F5EDD007F14C3 /* patch_backlight.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = patch_backlight.sh; sourceTree = "<group>"; };
 		EDCBBC741B4F5EDD007F14C3 /* Backlight.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Backlight.plist; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 				ED84A4551AE815E000897847 /* patch_hda.sh */,
 				ED84A45D1AE815F700897847 /* ahhcd.plist */,
 				ED84A45B1AE815F700897847 /* Platforms.plist */,
-				ED84A45C1AE815F700897847 /* layout12.plist */,
+				ED84A45C1AE815F700897847 /* layout13.plist */,
 			);
 			name = audio;
 			sourceTree = "<group>";
