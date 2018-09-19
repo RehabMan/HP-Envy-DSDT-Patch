@@ -6,7 +6,7 @@ SUDO=sudo
 TAG=`pwd`/tools/tag
 SLE=/System/Library/Extensions
 LE=/Library/Extensions
-EXCEPTIONS="Sensors|FakePCIID_BCM57XX|FakePCIID_AR9280|FakePCIID_Intel_GbX|FakePCIID_XHCIMux|BrcmPatchRAM|BrcmBluetoothInjector|BrcmFirmwareData|USBInjectAll|WhateverName"
+EXCEPTIONS="Sensors|FakePCIID_BCM57XX|FakePCIID_AR9280|FakePCIID_Intel_GbX|FakePCIID_XHCIMux|FakePCIID_Broadcom_WiFi.kext|BrcmPatchRAM|BrcmBluetoothInjector|BrcmFirmwareData|USBInjectAll|WhateverName"
 ESSENTIAL="FakeSMC.kext RealtekRTL8111.kext USBInjectAll.kext Lilu.kext WhateverGreen.kext AppleBacklightInjector.kext IntelBacklight.kext FakePCIID.kext FakePCIID_Intel_HD_Graphics.kext VoodooPS2Controller.kext"
 
 # extract minor version (eg. 10.9 vs. 10.10 vs. 10.11)
@@ -175,6 +175,8 @@ if [ $? -ne 0 ]; then
     fi
     # IntelGraphicsFixup.kext is no longer used (replaced by WhateverGreen.kext)
     remove_kext IntelGraphicsFixup.kext
+    # using AirportBrcmFixup.kext instead of FakePCIID_Broadcom_WiFi.kext
+    remove_kext FakePCIID_Broadcom_WiFi.kext
     cd ../..
 fi
 
