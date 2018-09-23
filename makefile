@@ -9,63 +9,59 @@
 # any more, but thought an update might be useful to others.
 #
 
-BUILDDIR=./build
 HDA=IDT76e0_Envy
 RESOURCES=./Resources_$(HDA)
 HDAINJECT=AppleHDA_$(HDA).kext
-USBINJECT=USBXHC_Envy.kext
-BACKLIGHTINJECT=AppleBacklightInjector.kext
-
-VERSION_ERA=$(shell ./print_version.sh)
-ifeq "$(VERSION_ERA)" "10.10-"
-	INSTDIR=/System/Library/Extensions
-else
-	INSTDIR=/Library/Extensions
-endif
-SLE=/System/Library/Extensions
+HDAINJECT_MARK=_hdainject_marker.txt
 
 # set build products
-PRODUCTS=$(BUILDDIR)/SSDT-HACK.aml
+BUILDDIR=./build
+HDA_PRODUCTS=$(HDAINJECT_MARK)
+AML_PRODUCTS=$(BUILDDIR)/SSDT-HACK.aml
+PRODUCTS=$(AML_PRODUCTS) $(HDA_PRODUCTS)
 
-IASLFLAGS=-vw 2095 -vw 3144 -vw 2011
+LE=/Library/Extensions
+SLE=/System/Library/Extensions
+VERSION_ERA=$(shell ./tools/print_version.sh)
+ifeq "$(VERSION_ERA)" "10.10-"
+	INSTDIR=$SLE
+else
+	INSTDIR=$LE
+endif
+
+IASLFLAGS=-vw 2095 -vw 2011 -vw 3144
 IASL=iasl
 
 .PHONY: all
-all: $(PRODUCTS) $(HDAINJECT)
+all: $(PRODUCTS)
 
-$(BUILDDIR)/SSDT-HACK.aml: ./SSDT-HACK.dsl
+$(BUILDDIR)/SSDT-HACK.aml: SSDT-HACK.dsl
 	$(IASL) $(IASLFLAGS) -p $@ $<
 
 .PHONY: clean
 clean:
 	rm -f $(BUILDDIR)/*.dsl $(BUILDDIR)/*.aml
+	make clean_hda
 
-# Clover Install
 .PHONY: install
-install: $(PRODUCTS)
+install: $(AML_PRODUCTS)
 	$(eval EFIDIR:=$(shell ./mount_efi.sh))
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-HACK.aml
 	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-2.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-3.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-4.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-5.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-7.aml
-	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
-	cp $(BUILDDIR)/SSDT-HACK.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-HACK.aml
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
+	cp $(AML_PRODUCTS) $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
-$(HDAINJECT): $(RESOURCES)/*.plist ./patch_hda.sh
-	./patch_hda.sh $(HDA)
-	touch $@
+$(HDAINJECT_MARK): $(RESOURCES)/*.plist tools/_hda_subs.sh
+	./tools/patch_hdainject.sh $(HDA)
+	touch $(HDAINJECT_MARK)
 
-$(BACKLIGHTINJECT): Backlight.plist patch_backlight.sh
-	./patch_backlight.sh
-	touch $@
+.PHONY: clean_hda
+clean_hda:
+	rm -rf $(HDAINJECT)
+	rm -f $(HDAINJECT_MARK)
 
 .PHONY: update_kernelcache
-update_kernelcache:
-	sudo touch $(SLE)
-	sudo kextcache -update-volume /
+	update_kernelcache:
+	sudo touch $(SLE) && sudo kextcache -update-volume /
 
 .PHONY: install_hda
 install_hda:
@@ -74,16 +70,3 @@ install_hda:
 	if [ "`which tag`" != "" ]; then sudo tag -a Blue $(INSTDIR)/$(HDAINJECT); fi
 	make update_kernelcache
 
-.PHONY: install_usb
-install_usb:
-	sudo rm -Rf $(INSTDIR)/$(USBINJECT)
-	sudo cp -R ./$(USBINJECT) $(INSTDIR)
-	if [ "`which tag`" != "" ]; then sudo tag -a Blue $(INSTDIR)/$(USBINJECT); fi
-	make update_kernelcache
-
-.PHONY: install_backlight
-install_backlight:
-	sudo rm -Rf $(INSTDIR)/$(BACKLIGHTINJECT)
-	sudo cp -R ./$(BACKLIGHTINJECT) $(INSTDIR)
-	if [ "`which tag`" != "" ]; then sudo tag -a Blue $(INSTDIR)/$(BACKLIGHTINJECT); fi
-	make update_kernelcache
