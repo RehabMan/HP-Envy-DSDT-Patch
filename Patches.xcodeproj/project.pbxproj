@@ -57,18 +57,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		840152E9182AE40B00D58B0A /* envy15 */ = {
+		840152E9182AE40B00D58B0A /* Patches */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 840152EC182AE40B00D58B0A /* Build configuration list for PBXLegacyTarget "envy15" */;
+			buildConfigurationList = 840152EC182AE40B00D58B0A /* Build configuration list for PBXLegacyTarget "Patches" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			dependencies = (
 			);
-			name = envy15;
+			name = Patches;
 			passBuildSettingsInEnvironment = 1;
-			productName = envy15;
+			productName = Patches;
 		};
 /* End PBXLegacyTarget section */
 
@@ -79,7 +79,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = RehabMan;
 			};
-			buildConfigurationList = 840152E8182AE40B00D58B0A /* Build configuration list for PBXProject "envy15" */;
+			buildConfigurationList = 840152E8182AE40B00D58B0A /* Build configuration list for PBXProject "Patches" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -90,7 +90,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				840152E9182AE40B00D58B0A /* envy15 */,
+				840152E9182AE40B00D58B0A /* Patches */,
 			);
 		};
 /* End PBXProject section */
@@ -188,7 +188,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		840152E8182AE40B00D58B0A /* Build configuration list for PBXProject "envy15" */ = {
+		840152E8182AE40B00D58B0A /* Build configuration list for PBXProject "Patches" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				840152EA182AE40B00D58B0A /* Debug */,
@@ -197,7 +197,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		840152EC182AE40B00D58B0A /* Build configuration list for PBXLegacyTarget "envy15" */ = {
+		840152EC182AE40B00D58B0A /* Build configuration list for PBXLegacyTarget "Patches" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				840152ED182AE40B00D58B0A /* Debug */,

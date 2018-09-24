@@ -7,10 +7,10 @@ _downloads/*
 build/*
 !build/readme.txt
 Resources_IDT76e0_Envy/layout/*.zlib
-envy15.xcodeproj/project.xcworkspace/xcuserdata
-envy15.xcodeproj/project.xcworkspace/xcshareddata/envy15.xccheckout
-envy15.xcodeproj/project.xcworkspace/xcshareddata/
-envy15.xcodeproj/xcuserdata
+Patches.xcodeproj/project.xcworkspace/xcuserdata
+Patches.xcodeproj/project.xcworkspace/xcshareddata/envy15.xccheckout
+Patches.xcodeproj/project.xcworkspace/xcshareddata/
+Patches.xcodeproj/xcuserdata
 native_linux/*
 !native_linux/readme.txt
 native_patchmatic/*
