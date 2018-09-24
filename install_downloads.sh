@@ -14,20 +14,20 @@ warn_about_superuser
 # install tools
 install_tools
 
+# remove old kexts
+remove_deprecated_kexts
+# EHCI is disabled, so no need for FakePCIID_XHCIMux.kext
+remove_kext FakePCIID_XHCIMux.kext
+# USBXHC_Envy.kext is not used any more (using USBInjectAll.kext instead)
+remove_kext USBXHC_Envy.kext
+
 # install required kexts
 install_download_kexts
 install_brcmpatchram_kexts
-remove_deprecated_kexts
 install_backlight_kexts
-
-# EHCI is disabled, so no need for FakePCIID_XHCIMux.kext
-remove_kext FakePCIID_XHCIMux.kext
 
 # create/install patched AppleHDA files
 install_hdainject
-
-# USBXHC_Envy.kext is not used any more (using USBInjectAll.kext instead)
-remove_kext USBXHC_Envy.kext
 
 # all kexts are now installed, so rebuild cache
 rebuild_kernel_cache
