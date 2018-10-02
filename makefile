@@ -1,24 +1,15 @@
 # makefile
 
 #
-# Patches/Installs/Builds DSDT patches for HP Envy (Haswell J-series)
+# Patches/Installs/Builds DSDT patches for HP Envy (Haswell J/K/N/Q-series)
 #
 # Created by RehabMan
 #
-# These patches are based on recent work on my Lenovo u430.  I don't have the Envy
-# any more, but thought an update might be useful to others.
-#
-
-HDA=IDT76e0_Envy
-RESOURCES=./Resources_$(HDA)
-HDAINJECT=AppleHDA_$(HDA).kext
-HDAINJECT_MARK=_hdainject_marker.txt
 
 # set build products
 BUILDDIR=./build
-HDA_PRODUCTS=$(HDAINJECT_MARK)
-AML_PRODUCTS=$(BUILDDIR)/SSDT-HACK.aml
-PRODUCTS=$(AML_PRODUCTS) $(HDA_PRODUCTS)
+AML_PRODUCTS=$(BUILDDIR)/SSDT-ENVYJ.aml $(BUILDDIR)/SSDT-ENVYK1.aml $(BUILDDIR)/SSDT-ENVYK2.aml $(BUILDDIR)/SSDT-ENVYN.aml $(BUILDDIR)/SSDT-ENVYQ.aml
+PRODUCTS=$(AML_PRODUCTS)
 
 LE=/Library/Extensions
 SLE=/System/Library/Extensions
@@ -35,38 +26,59 @@ IASL=iasl
 .PHONY: all
 all: $(PRODUCTS)
 
-$(BUILDDIR)/SSDT-HACK.aml: SSDT-HACK.dsl
+$(BUILDDIR)/SSDT-ENVYJ.aml: SSDT-ENVYJ.dsl
 	$(IASL) $(IASLFLAGS) -p $@ $<
+
+$(BUILDDIR)/SSDT-ENVYK1.aml: SSDT-ENVYK1.dsl
+	$(IASL) $(IASLFLAGS) -p $@ $<
+
+$(BUILDDIR)/SSDT-ENVYK2.aml: SSDT-ENVYK2.dsl
+	$(IASL) $(IASLFLAGS) -p $@ $<
+
+$(BUILDDIR)/SSDT-ENVYN.aml: SSDT-ENVYN.dsl
+	$(IASL) $(IASLFLAGS) -p $@ $<
+
+$(BUILDDIR)/SSDT-ENVYQ.aml: SSDT-ENVYQ.dsl
+	$(IASL) $(IASLFLAGS) -p $@ $<
+
 
 .PHONY: clean
 clean:
 	rm -f $(BUILDDIR)/*.dsl $(BUILDDIR)/*.aml
-	make clean_hda
 
-.PHONY: install
-install: $(AML_PRODUCTS)
+.PHONY: install_j
+install_j: SSDT-ENVYJ.aml
 	$(eval EFIDIR:=$(shell ./mount_efi.sh))
 	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
 	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
-	cp $(AML_PRODUCTS) $(EFIDIR)/EFI/CLOVER/ACPI/patched
+	cp $< $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
-$(HDAINJECT_MARK): $(RESOURCES)/*.plist tools/_hda_subs.sh
-	./tools/patch_hdainject.sh $(HDA)
-	touch $(HDAINJECT_MARK)
+.PHONY: install_k1
+install_k1: SSDT-ENVYK1.aml
+	$(eval EFIDIR:=$(shell ./mount_efi.sh))
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
+	cp $< $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
-.PHONY: clean_hda
-clean_hda:
-	rm -rf $(HDAINJECT)
-	rm -f $(HDAINJECT_MARK)
+.PHONY: install_k2
+install_k2: SSDT-ENVYK2.aml
+	$(eval EFIDIR:=$(shell ./mount_efi.sh))
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
+	cp $< $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
-.PHONY: update_kernelcache
-	update_kernelcache:
-	sudo touch $(SLE) && sudo kextcache -update-volume /
+.PHONY: install_n
+install_n: SSDT-ENVYN.aml
+	$(eval EFIDIR:=$(shell ./mount_efi.sh))
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
+	cp $< $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
-.PHONY: install_hda
-install_hda:
-	sudo rm -Rf $(INSTDIR)/$(HDAINJECT)
-	sudo cp -R ./$(HDAINJECT) $(INSTDIR)
-	if [ "`which tag`" != "" ]; then sudo tag -a Blue $(INSTDIR)/$(HDAINJECT); fi
-	make update_kernelcache
+.PHONY: install_q
+install_q: SSDT-ENVYQ.aml
+	$(eval EFIDIR:=$(shell ./mount_efi.sh))
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/DSDT.aml
+	rm -f $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT-*.aml $(EFIDIR)/EFI/CLOVER/ACPI/patched/SSDT.aml
+	cp $< $(EFIDIR)/EFI/CLOVER/ACPI/patched
 
+#EOF

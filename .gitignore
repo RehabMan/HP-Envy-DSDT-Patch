@@ -1,14 +1,11 @@
 .DS_Store
 stash/*
 tools/*
-AppleHDA_IDT76e0_Envy.kext
-_hdainject_marker.txt
-_downloads/*
 build/*
 !build/readme.txt
-Resources_IDT76e0_Envy/layout/*.zlib
+_downloads/
 Patches.xcodeproj/project.xcworkspace/xcuserdata
-Patches.xcodeproj/project.xcworkspace/xcshareddata/envy15.xccheckout
+Patches.xcodeproj/project.xcworkspace/xcshareddata/Patches.xccheckout
 Patches.xcodeproj/project.xcworkspace/xcshareddata/
 Patches.xcodeproj/xcuserdata
 native_linux/*

@@ -1,9 +1,8 @@
 #!/bin/bash
 #set -x
 
-HDA=IDT76e0_Envy
 EXCEPTIONS=
-ESSENTIAL=
+ESSENTIAL="AppleALC.kext FakePCIID_XHCIMux.kext"
 
 # include subroutines
 DIR=$(dirname ${BASH_SOURCE[0]})
@@ -16,18 +15,19 @@ install_tools
 
 # remove old kexts
 remove_deprecated_kexts
-# EHCI is disabled, so no need for FakePCIID_XHCIMux.kext
-remove_kext FakePCIID_XHCIMux.kext
 # USBXHC_Envy.kext is not used any more (using USBInjectAll.kext instead)
 remove_kext USBXHC_Envy.kext
+
+# using AppleALC.kext, remove patched zml.zlib files
+sudo rm -f /System/Library/Extensions/AppleHDA.kext/Contents/Resources/*.zml.zlib
 
 # install required kexts
 install_download_kexts
 install_brcmpatchram_kexts
 install_backlight_kexts
 
-# create/install patched AppleHDA files
-install_hdainject
+# some models need FakePCIID_XHCIMux.kext
+install_fakepciid_xhcimux
 
 # all kexts are now installed, so rebuild cache
 rebuild_kernel_cache

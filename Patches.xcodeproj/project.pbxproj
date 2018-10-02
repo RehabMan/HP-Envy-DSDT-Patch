@@ -9,15 +9,37 @@
 /* Begin PBXFileReference section */
 		840152EF182AE45E00D58B0A /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; usesTabs = 1; };
 		8406FCD6188627B8006D8DB7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		ED2B05DA1B4F2C11004A23A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = USBXHC_Envy.kext/Contents/Info.plist; sourceTree = "<group>"; };
+		ED2370A6216374D300D6E4CE /* config_envyq.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_envyq.plist; sourceTree = "<group>"; };
+		ED2370A7216374D300D6E4CE /* config_envyn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_envyn.plist; sourceTree = "<group>"; };
+		ED2370A8216374D300D6E4CE /* SSDT-ENVYN.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYN.dsl"; sourceTree = "<group>"; };
+		ED2370A9216374D300D6E4CE /* config_envyk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_envyk.plist; sourceTree = "<group>"; };
+		ED2370AA216374D300D6E4CE /* SSDT-ENVYK1.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYK1.dsl"; sourceTree = "<group>"; };
+		ED2370AB216374D300D6E4CE /* SSDT-ENVYQ.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYQ.dsl"; sourceTree = "<group>"; };
+		ED3B9CAD21637B19008358BF /* SSDT-AppleALC.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-AppleALC.dsl"; sourceTree = "<group>"; };
+		ED3B9CAE21637B19008358BF /* SSDT-XOSI.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-XOSI.dsl"; sourceTree = "<group>"; };
+		ED3B9CAF21637BAE008358BF /* SSDT-GPRW.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-GPRW.dsl"; sourceTree = "<group>"; };
+		ED3B9CB021637BD6008358BF /* SSDT-DEH01.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-DEH01.dsl"; sourceTree = "<group>"; };
+		ED3B9CB121637C63008358BF /* SSDT-PNLF.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-PNLF.dsl"; sourceTree = "<group>"; };
+		ED3B9CB221637CEA008358BF /* SSDT-MISC.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-MISC.dsl"; sourceTree = "<group>"; };
+		ED3B9CB321637D54008358BF /* SSDT-USB-K2.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-USB-K2.dsl"; sourceTree = "<group>"; };
+		ED3B9CB421637D54008358BF /* SSDT-USB-K1.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-USB-K1.dsl"; sourceTree = "<group>"; };
+		ED3B9CB52163803C008358BF /* SSDT-PS2K.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-PS2K.dsl"; sourceTree = "<group>"; };
+		ED3B9CB6216380B8008358BF /* SSDT-Q10Q11.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-Q10Q11.dsl"; sourceTree = "<group>"; };
+		ED3B9CB7216380B8008358BF /* SSDT-Q13.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-Q13.dsl"; sourceTree = "<group>"; };
+		ED3B9CB8216381B0008358BF /* SSDT-BATTN.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-BATTN.dsl"; sourceTree = "<group>"; };
+		ED3B9CB9216381B0008358BF /* SSDT-BATTK.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-BATTK.dsl"; sourceTree = "<group>"; };
+		ED3B9CBA216381B0008358BF /* SSDT-BATTQ.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-BATTQ.dsl"; sourceTree = "<group>"; };
+		ED3B9CBB216381B1008358BF /* SSDT-BATTJ.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-BATTJ.dsl"; sourceTree = "<group>"; };
+		ED3B9CBC216382B4008358BF /* SSDT-DDGPU.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-DDGPU.dsl"; sourceTree = "<group>"; };
+		ED3B9CBD21638346008358BF /* SSDT-ENVYK2.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYK2.dsl"; sourceTree = "<group>"; };
+		ED3B9CBE2163844F008358BF /* SSDT-USB-J.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-USB-J.dsl"; sourceTree = "<group>"; };
+		ED3B9CBF2163844F008358BF /* SSDT-USB-N.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-USB-N.dsl"; sourceTree = "<group>"; };
+		ED3B9CC02163844F008358BF /* SSDT-USB-Q.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-USB-Q.dsl"; sourceTree = "<group>"; };
 		ED84A4571AE815E000897847 /* License.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
 		ED84A4581AE815E000897847 /* install_downloads.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_downloads.sh; sourceTree = "<group>"; };
 		ED84A4591AE815E000897847 /* download.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = download.sh; sourceTree = "<group>"; };
-		ED84A45A1AE815E000897847 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
-		ED84A45B1AE815F700897847 /* Platforms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Platforms.plist; path = Resources_IDT76e0_Envy/Platforms.plist; sourceTree = "<group>"; };
-		ED84A45C1AE815F700897847 /* layout14.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = layout14.plist; path = Resources_IDT76e0_Envy/layout14.plist; sourceTree = "<group>"; };
-		ED84A45D1AE815F700897847 /* ahhcd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ahhcd.plist; path = Resources_IDT76e0_Envy/ahhcd.plist; sourceTree = "<group>"; };
-		EDFF8C121BF7858200FB5D11 /* SSDT-HACK.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = "SSDT-HACK.dsl"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		ED84A45A1AE815E000897847 /* config_envyj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_envyj.plist; sourceTree = "<group>"; };
+		EDFF8C121BF7858200FB5D11 /* SSDT-ENVYJ.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = "SSDT-ENVYJ.dsl"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -26,32 +48,38 @@
 			children = (
 				8406FCD6188627B8006D8DB7 /* README.md */,
 				ED84A4571AE815E000897847 /* License.md */,
-				ED84A45A1AE815E000897847 /* config.plist */,
-				EDFF8C121BF7858200FB5D11 /* SSDT-HACK.dsl */,
 				840152EF182AE45E00D58B0A /* makefile */,
 				ED84A4591AE815E000897847 /* download.sh */,
 				ED84A4581AE815E000897847 /* install_downloads.sh */,
-				ED84A45E1AE8160700897847 /* audio */,
-				ED2B05DB1B4F2C1C004A23A9 /* USBXHC-Envy.kext */,
+				ED84A45A1AE815E000897847 /* config_envyj.plist */,
+				ED2370A9216374D300D6E4CE /* config_envyk.plist */,
+				ED2370A7216374D300D6E4CE /* config_envyn.plist */,
+				ED2370A6216374D300D6E4CE /* config_envyq.plist */,
+				EDFF8C121BF7858200FB5D11 /* SSDT-ENVYJ.dsl */,
+				ED2370AA216374D300D6E4CE /* SSDT-ENVYK1.dsl */,
+				ED3B9CBD21638346008358BF /* SSDT-ENVYK2.dsl */,
+				ED2370A8216374D300D6E4CE /* SSDT-ENVYN.dsl */,
+				ED2370AB216374D300D6E4CE /* SSDT-ENVYQ.dsl */,
+				ED3B9CAE21637B19008358BF /* SSDT-XOSI.dsl */,
+				ED3B9CAD21637B19008358BF /* SSDT-AppleALC.dsl */,
+				ED3B9CAF21637BAE008358BF /* SSDT-GPRW.dsl */,
+				ED3B9CB021637BD6008358BF /* SSDT-DEH01.dsl */,
+				ED3B9CBC216382B4008358BF /* SSDT-DDGPU.dsl */,
+				ED3B9CB121637C63008358BF /* SSDT-PNLF.dsl */,
+				ED3B9CB221637CEA008358BF /* SSDT-MISC.dsl */,
+				ED3B9CB52163803C008358BF /* SSDT-PS2K.dsl */,
+				ED3B9CB6216380B8008358BF /* SSDT-Q10Q11.dsl */,
+				ED3B9CB7216380B8008358BF /* SSDT-Q13.dsl */,
+				ED3B9CBB216381B1008358BF /* SSDT-BATTJ.dsl */,
+				ED3B9CB9216381B0008358BF /* SSDT-BATTK.dsl */,
+				ED3B9CB8216381B0008358BF /* SSDT-BATTN.dsl */,
+				ED3B9CBA216381B0008358BF /* SSDT-BATTQ.dsl */,
+				ED3B9CBE2163844F008358BF /* SSDT-USB-J.dsl */,
+				ED3B9CB421637D54008358BF /* SSDT-USB-K1.dsl */,
+				ED3B9CB321637D54008358BF /* SSDT-USB-K2.dsl */,
+				ED3B9CBF2163844F008358BF /* SSDT-USB-N.dsl */,
+				ED3B9CC02163844F008358BF /* SSDT-USB-Q.dsl */,
 			);
-			sourceTree = "<group>";
-		};
-		ED2B05DB1B4F2C1C004A23A9 /* USBXHC-Envy.kext */ = {
-			isa = PBXGroup;
-			children = (
-				ED2B05DA1B4F2C11004A23A9 /* Info.plist */,
-			);
-			name = "USBXHC-Envy.kext";
-			sourceTree = "<group>";
-		};
-		ED84A45E1AE8160700897847 /* audio */ = {
-			isa = PBXGroup;
-			children = (
-				ED84A45D1AE815F700897847 /* ahhcd.plist */,
-				ED84A45B1AE815F700897847 /* Platforms.plist */,
-				ED84A45C1AE815F700897847 /* layout14.plist */,
-			);
-			name = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

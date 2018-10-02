@@ -9,6 +9,12 @@ http://www.tonymacx86.com/yosemite-laptop-guides/162939-guide-hp-envy-haswell-se
 
 ### Change Log:
 
+2018-09-02
+
+- complete major revisions for Mojave and to use AppleALC.kext
+
+- merge Envy J/K/N/Q into single project
+
 2015-04-29
 
 - Merge u430 changes

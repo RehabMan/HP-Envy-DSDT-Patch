@@ -1,539 +1,3 @@
-// Instead of providing patched DSDT/SSDT, just include a single SSDT
-// and do the rest of the work in config.plist
-
-// A bit experimental, and a bit more difficult with laptops, but
-// still possible.
-
-// Note: No solution for missing IAOE here, but so far, not a problem.
-
-DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
-{
-    External(_SB.PCI0, DeviceObj)
-    External(_SB.PCI0.LPCB, DeviceObj)
-
-    // All _OSI calls in DSDT are routed to XOSI...
-    // XOSI simulates "Windows 2012" (which is Windows 8)
-    // Note: According to ACPI spec, _OSI("Windows") must also return true
-    //  Also, it should return true for all previous versions of Windows.
-    Method(XOSI, 1)
-    {
-        // simulation targets
-        // source: (google 'Microsoft Windows _OSI')
-        //  http://download.microsoft.com/download/7/E/7/7E7662CF-CBEA-470B-A97E-CE7CE0D98DC2/WinACPI_OSI.docx
-        Store(Package()
-        {
-            "Windows",              // generic Windows query
-            "Windows 2001",         // Windows XP
-            "Windows 2001 SP2",     // Windows XP SP2
-            //"Windows 2001.1",     // Windows Server 2003
-            //"Windows 2001.1 SP1", // Windows Server 2003 SP1
-            "Windows 2006",         // Windows Vista
-            "Windows 2006 SP1",     // Windows Vista SP1
-            //"Windows 2006.1",     // Windows Server 2008
-            "Windows 2009",         // Windows 7/Windows Server 2008 R2
-            "Windows 2012",         // Windows 8/Windows Server 2012
-            //"Windows 2013",       // Windows 8.1/Windows Server 2012 R2
-            //"Windows 2015",       // Windows 10/Windows Server TP
-        }, Local0)
-        Return (Ones != Match(Local0, MEQ, Arg0, MTR, 0, 0))
-    }
-
-//
-// ACPISensors configuration (ACPISensors.kext is not installed by default)
-//
-
-    // Not implemented for the Haswell Envy
-
-//
-// USB related
-//
-
-    // In DSDT, native GPRW is renamed to XPRW with Clover binpatch.
-    // As a result, calls to GPRW land here.
-    // The purpose of this implementation is to avoid "instant wake"
-    // by returning 0 in the second position (sleep state supported)
-    // of the return package.
-    Method(GPRW, 2)
-    {
-        If (0x0d == Arg0) { Return(Package() { 0x0d, 0 }) }
-        If (0x6d == Arg0) { Return(Package() { 0x6d, 0 }) }
-        External(\XPRW, MethodObj)
-        Return(XPRW(Arg0, Arg1))
-    }
-
-    // Override for USBInjectAll.kext
-    Device(UIAC)
-    {
-        Name(_HID, "UIA00000")
-        Name(RMCF, Package()
-        {
-            // EH01 is disabled
-            // EH02 not present
-            // XHC overrides
-            "8086_8xxx", Package()
-            {
-                //"port-count", Buffer() { 0x15, 0, 0, 0 },
-                "ports", Package()
-                {
-                    "HS01", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x01, 0, 0, 0 },
-                    },
-                    "HS02", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x02, 0, 0, 0 },
-                    },
-                    "HS03", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x03, 0, 0, 0 },
-                    },
-                    "HS04", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x04, 0, 0, 0 },
-                    },
-                    "HS05", Package()
-                    {
-                        "UsbConnector", 255,
-                        "port", Buffer() { 0x05, 0, 0, 0 },
-                    },
-                    "HS07", Package()  // camera
-                    {
-                        "UsbConnector", 255,
-                        "port", Buffer() { 0x07, 0, 0, 0 },
-                    },
-                    "HS13", Package() // touchscreen
-                    {
-                        "UsbConnector", 255,
-                        "port", Buffer() { 0x0d, 0, 0, 0 },
-                    },
-                    // HS14 is finger print reader, not supported
-                    "SS01", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x10, 0, 0, 0 },
-                    },
-                    "SS02", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x11, 0, 0, 0 },
-                    },
-                    "SS03", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x12, 0, 0, 0 },
-                    },
-                    "SS04", Package()
-                    {
-                        "UsbConnector", 3,
-                        "port", Buffer() { 0x13, 0, 0, 0 },
-                    },
-                },
-            },
-        })
-    }
-
-//
-// Disabling EHCI #1
-//
-    External(_SB.PCI0.EH01, DeviceObj)
-    Scope(_SB.PCI0)
-    {
-        // registers needed for disabling EHC#1
-        Scope(EH01)
-        {
-            OperationRegion(PSTS, PCI_Config, 0x54, 2)
-            Field(PSTS, WordAcc, NoLock, Preserve)
-            {
-                PSTE, 2  // bits 2:0 are power state
-            }
-        }
-        Scope(LPCB)
-        {
-            OperationRegion(RMLP, PCI_Config, 0xF0, 4)
-            Field(RMLP, DWordAcc, NoLock, Preserve)
-            {
-                RCB1, 32, // Root Complex Base Address
-            }
-            // address is in bits 31:14
-            OperationRegion(FDM1, SystemMemory, (RCB1 & Not((1<<14)-1)) + 0x3418, 4)
-            Field(FDM1, DWordAcc, NoLock, Preserve)
-            {
-                ,15,    // skip first 15 bits
-                FDE1,1, // should be bit 15 (0-based) (FD EHCI#1)
-            }
-        }
-        Device(RMD1)
-        {
-            //Name(_ADR, 0)
-            Name(_HID, "RMD10000")
-            Method(_INI)
-            {
-                // disable EHCI#1
-                // put EHCI#1 in D3hot (sleep mode)
-                ^^EH01.PSTE = 3
-                // disable EHCI#1 PCI space
-                ^^LPCB.FDE1 = 1
-            }
-        }
-    }
-
-//
-// For disabling the discrete GPU
-//
-
-    External(_SB.PCI0.PEG0.PEGP._OFF, MethodObj)
-    Device(RMD2)
-    {
-        Name(_HID, "RMD20000")
-        Method(_INI)
-        {
-            // disable discrete graphics (Nvidia/Radeon) if it is present
-            If (CondRefOf(\_SB.PCI0.PEG0.PEGP._OFF)) { \_SB.PCI0.PEG0.PEGP._OFF() }
-        }
-    }
-
-//
-// Display backlight implementation
-//
-// From SSDT-PNLF.dsl
-// Adding PNLF device for IntelBacklight.kext or AppleBacklight.kext+AppleBacklightInjector.kext
-
-#define SANDYIVY_PWMMAX 0x710
-#define HASWELL_PWMMAX 0xad9
-#define SKYLAKE_PWMMAX 0x56c
-
-    External(RMCF.BKLT, IntObj)
-    External(RMCF.LMAX, IntObj)
-
-    External(_SB.PCI0.IGPU, DeviceObj)
-    Scope(_SB.PCI0.IGPU)
-    {
-        // need the device-id from PCI_config to inject correct properties
-        OperationRegion(IGD5, PCI_Config, 0, 0x14)
-    }
-
-    // For backlight control
-    Device(_SB.PCI0.IGPU.PNLF)
-    {
-        Name(_ADR, Zero)
-        Name(_HID, EisaId ("APP0002"))
-        Name(_CID, "backlight")
-        // _UID is set depending on PWMMax
-        // 14: Sandy/Ivy 0x710
-        // 15: Haswell/Broadwell 0xad9
-        // 16: Skylake/KabyLake 0x56c (and some Haswell, example 0xa2e0008)
-        // 99: Other
-        Name(_UID, 0)
-        Name(_STA, 0x0B)
-
-        // IntelBacklight.kext configuration
-        Name(RMCF, Package()
-        {
-            "PWMMax", 0,
-        })
-
-        Field(^IGD5, AnyAcc, NoLock, Preserve)
-        {
-            Offset(0x02), GDID,16,
-            Offset(0x10), BAR1,32,
-        }
-
-        OperationRegion(RMB1, SystemMemory, BAR1 & ~0xF, 0xe1184)
-        Field(RMB1, AnyAcc, Lock, Preserve)
-        {
-            Offset(0x48250),
-            LEV2, 32,
-            LEVL, 32,
-            Offset(0x70040),
-            P0BL, 32,
-            Offset(0xc8250),
-            LEVW, 32,
-            LEVX, 32,
-            Offset(0xe1180),
-            PCHL, 32,
-        }
-
-        Method(_INI)
-        {
-            // IntelBacklight.kext takes care of this at load time...
-            // If RMCF.BKLT does not exist, it is assumed you want to use AppleBacklight.kext...
-            If (CondRefOf(\RMCF.BKLT)) { If (1 != \RMCF.BKLT) { Return } }
-
-            // Adjustment required when using AppleBacklight.kext
-            Local0 = GDID
-            Local2 = Ones
-            if (CondRefOf(\RMCF.LMAX)) { Local2 = \RMCF.LMAX }
-
-            If (Ones != Match(Package()
-            {
-                // Sandy
-                0x0116, 0x0126, 0x0112, 0x0122,
-                // Ivy
-                0x0166, 0x016a,
-                // Arrandale
-                0x42, 0x46
-            }, MEQ, Local0, MTR, 0, 0))
-            {
-                // Sandy/Ivy
-                if (Ones == Local2) { Local2 = SANDYIVY_PWMMAX }
-
-                // change/scale only if different than current...
-                Local1 = LEVX >> 16
-                If (!Local1) { Local1 = Local2 }
-                If (Local2 != Local1)
-                {
-                    // set new backlight PWMMax but retain current backlight level by scaling
-                    Local0 = (LEVL * Local2) / Local1
-                    //REVIEW: wait for vblank before setting new PWM config
-                    //For (Local7 = P0BL, P0BL == Local7, ) { }
-                    Local3 = Local2 << 16
-                    If (Local2 > Local1)
-                    {
-                        // PWMMax is getting larger... store new PWMMax first
-                        LEVX = Local3
-                        LEVL = Local0
-                    }
-                    Else
-                    {
-                        // otherwise, store new brightness level, followed by new PWMMax
-                        LEVL = Local0
-                        LEVX = Local3
-                    }
-                }
-            }
-            Else
-            {
-                // otherwise... Assume Haswell/Broadwell/Skylake
-                if (Ones == Local2)
-                {
-                    // check Haswell and Broadwell, as they are both 0xad9 (for most common ig-platform-id values)
-                    If (Ones != Match(Package()
-                    {
-                        // Haswell
-                        0x0d26, 0x0a26, 0x0d22, 0x0412, 0x0416, 0x0a16, 0x0a1e, 0x0a1e, 0x0a2e, 0x041e, 0x041a,
-                        // Broadwell
-                        0x0BD1, 0x0BD2, 0x0BD3, 0x1606, 0x160e, 0x1616, 0x161e, 0x1626, 0x1622, 0x1612, 0x162b,
-                    }, MEQ, Local0, MTR, 0, 0))
-                    {
-                        Local2 = HASWELL_PWMMAX
-                    }
-                    Else
-                    {
-                        // assume Skylake/KabyLake, both 0x56c
-                        // 0x1916, 0x191E, 0x1926, 0x1927, 0x1912, 0x1932, 0x1902, 0x1917, 0x191b,
-                        // 0x5916, 0x5912, 0x591b, others...
-                        Local2 = SKYLAKE_PWMMAX
-                    }
-                }
-
-                // This 0xC value comes from looking what OS X initializes this\n
-                // register to after display sleep (using ACPIDebug/ACPIPoller)\n
-                LEVW = 0xC0000000
-
-                // change/scale only if different than current...
-                Local1 = LEVX >> 16
-                If (!Local1) { Local1 = Local2 }
-                If (Local2 != Local1)
-                {
-                    // set new backlight PWMAX but retain current backlight level by scaling
-                    Local0 = (((LEVX & 0xFFFF) * Local2) / Local1) | (Local2 << 16)
-                    //REVIEW: wait for vblank before setting new PWM config
-                    //For (Local7 = P0BL, P0BL == Local7, ) { }
-                    LEVX = Local0
-                }
-            }
-
-            // Now Local2 is the new PWMMax, set _UID accordingly
-            // The _UID selects the correct entry in AppleBacklightInjector.kext
-            If (Local2 == SANDYIVY_PWMMAX) { _UID = 14 }
-            ElseIf (Local2 == HASWELL_PWMMAX) { _UID = 15 }
-            ElseIf (Local2 == SKYLAKE_PWMMAX) { _UID = 16 }
-            Else { _UID = 99 }
-        }
-    }
-
-
-//
-// Standard Injections/Fixes
-//
-
-    Scope(_SB.PCI0)
-    {
-        Device(IMEI)
-        {
-            Name (_ADR, 0x00160000)
-        }
-
-        Device(SBUS.BUS0)
-        {
-            Name(_CID, "smbus")
-            Name(_ADR, Zero)
-            Device(DVL0)
-            {
-                Name(_ADR, 0x57)
-                Name(_CID, "diagsvault")
-                Method(_DSM, 4)
-                {
-                    If (!Arg2) { Return (Buffer() { 0x03 } ) }
-                    Return (Package() { "address", 0x57 })
-                }
-            }
-        }
-
-        External(IGPU, DeviceObj)
-        Scope(IGPU)
-        {
-            // need the device-id from PCI_config to inject correct properties
-            OperationRegion(RMIG, PCI_Config, 2, 2)
-            Field(RMIG, AnyAcc, NoLock, Preserve)
-            {
-                GDID,16
-            }
-
-            // inject properties for integrated graphics on IGPU
-            Method(_DSM, 4)
-            {
-                If (!Arg2) { Return (Buffer() { 0x03 } ) }
-                Local1 = Package()
-                {
-                    "model", Buffer() { "place holder" },
-                    "device-id", Buffer() { 0x12, 0x04, 0x00, 0x00 },
-                    "hda-gfx", Buffer() { "onboard-1" },
-                    "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },
-                }
-                Local0 = GDID
-                If (0x0a16 == Local0) { Local1[1] = Buffer() { "Intel HD Graphics 4400" } }
-                ElseIf (0x0416 == Local0) { Local1[1] = Buffer() { "Intel HD Graphics 4600" } }
-                ElseIf (0x0a1e == Local0) { Local1[1] = Buffer() { "Intel HD Graphics 4200" } }
-                Else
-                {
-                    // others (HD5000 and Iris) are natively supported
-                    Local1 = Package()
-                    {
-                        "hda-gfx", Buffer() { "onboard-1" },
-                        "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },
-                    }
-                }
-                Return(Local1)
-            }
-        }
-    }
-
-//
-// Fix SATA in RAID mode
-//
-
-    External(_SB.PCI0.SAT0, DeviceObj)
-    Scope(_SB.PCI0.SAT0)
-    {
-        OperationRegion(SAT4, PCI_Config, 2, 2)
-        Field(SAT4, AnyAcc, NoLock, Preserve)
-        {
-            SDID,16
-        }
-        Method(_DSM, 4)
-        {
-            If (!Arg2) { Return (Buffer() { 0x03 } ) }
-            If (0x282a == SDID)
-            {
-                // 8086:282a is RAID mode, remap to supported 8086:2829
-                Return (Package()
-                {
-                    "device-id", Buffer() { 0x29, 0x28, 0, 0 },
-                })
-            }
-            Return (Package() { })
-        }
-    }
-
-//
-// Keyboard/Trackpad
-//
-
-    External(_SB.PCI0.LPCB.PS2K, DeviceObj)
-    Scope (_SB.PCI0.LPCB.PS2K)
-    {
-        // Select specific keyboard map in VoodooPS2Keyboard.kext
-        Method(_DSM, 4)
-        {
-            If (!Arg2) { Return (Buffer() { 0x03 } ) }
-            Return (Package()
-            {
-                "RM,oem-id", "HPQOEM",
-                "RM,oem-table-id", "Haswell-Envy-RMCF",
-            })
-        }
-
-        // overrides for VoodooPS2 configuration... (much more could be done here)
-        Name(RMCF, Package()
-        {
-            "Sentelic FSP", Package()
-            {
-                "DisableDevice", ">y",
-            },
-            "ALPS GlidePoint", Package()
-            {
-                "DisableDevice", ">y",
-            },
-            "Mouse", Package()
-            {
-                "DisableDevice", ">y",
-            },
-            "Keyboard", Package()
-            {
-                "Custom PS2 Map", Package()
-                {
-                    Package() { },
-                    "e045=e037",
-                    "e0ab=0",   // bogus Fn+F2/F3
-                },
-                "Custom ADB Map", Package()
-                {
-                    Package() { },
-                    "e019=42",  // next track
-                    "e010=4d",  // previous track
-                },
-            },
-            "Synaptics TouchPad", Package()
-            {
-                "DynamicEWMode", ">y",
-            },
-        })
-    }
-
-    External(_SB.PCI0.LPCB.EC, DeviceObj)
-    Scope(_SB.PCI0.LPCB.EC)
-    {
-        // The native _Qxx methods in DSDT are renamed XQxx,
-        // so notifications from the EC driver will land here.
-
-        // _Q13 called on brightness/mirror display key
-        Method (_Q13, 0, Serialized)  // _Qxx: EC Query
-        {
-            External(\HKNO, FieldUnitObj)
-            Store(HKNO, Local0)
-            If (LEqual(Local0,7))
-            {
-                // Brightness Down
-                Notify(\_SB.PCI0.LPCB.PS2K, 0x0405)
-            }
-            If (LEqual(Local0,8))
-            {
-                // Brightness Up
-                Notify(\_SB.PCI0.LPCB.PS2K, 0x0406)
-            }
-            If (LEqual(Local0,4))
-            {
-                // Mirror toggle
-                Notify(\_SB.PCI0.LPCB.PS2K, 0x046e)
-            }
-        }
-    }
-
 //
 // Battery Status (based on patching native DSDT with "HP Envy 17t")
 //
@@ -644,13 +108,15 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
         }
         Method (RECB, 2, Serialized)
         {
-            Arg1 >>= 3
+            ShiftRight(Arg1, 3, Arg1)
             Name(TEMP, Buffer(Arg1) { })
-            Local0 = 0
-            For (Arg1 += Arg0, Arg0 < Arg1, Arg0++)
+            Add(Arg0, Arg1, Arg1)
+            Store(0, Local0)
+            While (LLess(Arg0, Arg1))
             {
-                TEMP[Local0] = RE1B(Arg0)
-                Local0++
+                Store(RE1B(Arg0), Index(TEMP, Local0))
+                Increment(Arg0)
+                Increment(Local0)
             }
             Return(TEMP)
         }
@@ -670,7 +136,6 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
 
     // Externals from DSDT
 
-        External(BTDR, MethodObj)
         External(BSTA, MethodObj)
         External(BTMX, MutexObj)
         External(NGBF, IntObj)
@@ -700,24 +165,11 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
             ShiftLeft (One, Arg0, Local7)
-            BTDR (One)
             If (LEqual (BSTA (Local7), 0x0F))
             {
                 Return (0xFF)
             }
 
-            Acquire (BTMX, 0xFFFF)
-            Store (NGBF, Local0)
-            Release (BTMX)
-            If (LEqual (And (Local0, Local7), Zero))
-            {
-                Return (Zero)
-            }
-
-            Store (NDBS, Index (NBST, Arg0))
-            Acquire (BTMX, 0xFFFF)
-            Or (NGBT, Local7, NGBT)
-            Release (BTMX)
             Acquire (ECMX, 0xFFFF)
             If (ECRG)
             {
@@ -775,9 +227,6 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
             Release (ECMX)
             Store (GBSS (Local0, Local1), Local2)
             Store (Local2, Index (DerefOf (Index (NBTI, Arg0)), 0x0A))
-            Acquire (BTMX, 0xFFFF)
-            And (NGBF, Not (Local7), NGBF)
-            Release (BTMX)
             Return (Zero)
         }
 
@@ -786,16 +235,15 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
             ShiftLeft (One, Arg0, Local7)
-            BTDR (One)
             If (LEqual (BSTA (Local7), 0x0F))
             {
                 Store (Package (0x04)
-                    {
-                        Zero, 
-                        Ones, 
-                        Ones, 
-                        Ones
-                    }, Index (NBST, Arg0))
+                {
+                    Zero,
+                    0xFFFFFFFF,
+                    0xFFFFFFFF,
+                    0xFFFFFFFF
+                }, Index (NBST, Arg0))
                 Return (0xFF)
             }
 
@@ -868,11 +316,11 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
                     Store (DerefOf (Index (DerefOf (Index (NBST, Arg0)), One)), Local5)
                     If (LOr (LLess (Local5, 0x0190), LGreater (Local5, 0x1964)))
                     {
-                        Store (Ones, Local3)
+                        Store (0xFFFFFFFF, Local3)
                     }
                     Else
                     {
-                        Store (Ones, Local3)
+                        Store (0xFFFFFFFF, Local3)
                     }
                 }
             }
@@ -882,20 +330,6 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
             And (NGBT, Not (Local7), NGBT)
             Release (BTMX)
             Return (Zero)
-        }
-
-        Method (ITLB, 0, NotSerialized)
-        {
-            Acquire (ECMX, 0xFFFF)
-            If (ECRG)
-            {
-                Add (B1B2(FC10,FC11),B1B2(FC00,FC01), Local1)
-                Divide (Add (Local1, 0x63), 0x64, Local2, Local3)
-                Multiply (Local3, LB1, NLB1)
-                Multiply (Local3, LB2, NLB2)
-            }
-
-            Release (ECMX)
         }
 
         Method (GBTI, 1, NotSerialized)
@@ -1006,13 +440,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
 
         Method (_Q09, 0, NotSerialized)  // _Qxx: EC Query
         {
-            P8XH (0x04, 0x09, One)
-            PWUP (0x05, One)
-            If (BTDR (0x02))
-            {
-                Notify (BAT0, 0x80)
-            }
-
+            Notify (BAT0, 0x80)
             If (LEqual (B1B2(RC00,RC01),B1B2(FC00,FC01)))
             {
                 Notify (BAT0, 0x81)
@@ -1132,5 +560,5 @@ DefinitionBlock("", "SSDT", 2, "hack", "_HACK", 0)
             }
         }
     }
-}
 
+//EOF
