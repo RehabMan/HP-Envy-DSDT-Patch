@@ -18,8 +18,10 @@ remove_deprecated_kexts
 # USBXHC_Envy.kext is not used any more (using USBInjectAll.kext instead)
 remove_kext USBXHC_Envy.kext
 
-# using AppleALC.kext, remove patched zml.zlib files
-sudo rm -f /System/Library/Extensions/AppleHDA.kext/Contents/Resources/*.zml.zlib
+# using AppleALC.kext, remove AppleHDA injectors
+remove_kext AppleHDA_IDT76e0_Envy.kext
+remove_kext AppleHDA_ALC282.kext
+remove_kext AppleHDA_ALC290.kext
 
 # install required kexts
 install_download_kexts
