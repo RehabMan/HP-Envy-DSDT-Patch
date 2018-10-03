@@ -15,7 +15,6 @@
 		ED2370A9216374D300D6E4CE /* config_envyk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_envyk.plist; sourceTree = "<group>"; };
 		ED2370AA216374D300D6E4CE /* SSDT-ENVYK1.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYK1.dsl"; sourceTree = "<group>"; };
 		ED2370AB216374D300D6E4CE /* SSDT-ENVYQ.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-ENVYQ.dsl"; sourceTree = "<group>"; };
-		ED3B9CAD21637B19008358BF /* SSDT-AppleALC.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-AppleALC.dsl"; sourceTree = "<group>"; };
 		ED3B9CAE21637B19008358BF /* SSDT-XOSI.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-XOSI.dsl"; sourceTree = "<group>"; };
 		ED3B9CAF21637BAE008358BF /* SSDT-GPRW.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-GPRW.dsl"; sourceTree = "<group>"; };
 		ED3B9CB021637BD6008358BF /* SSDT-DEH01.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SSDT-DEH01.dsl"; sourceTree = "<group>"; };
@@ -61,7 +60,6 @@
 				ED2370A8216374D300D6E4CE /* SSDT-ENVYN.dsl */,
 				ED2370AB216374D300D6E4CE /* SSDT-ENVYQ.dsl */,
 				ED3B9CAE21637B19008358BF /* SSDT-XOSI.dsl */,
-				ED3B9CAD21637B19008358BF /* SSDT-AppleALC.dsl */,
 				ED3B9CAF21637BAE008358BF /* SSDT-GPRW.dsl */,
 				ED3B9CB021637BD6008358BF /* SSDT-DEH01.dsl */,
 				ED3B9CBC216382B4008358BF /* SSDT-DDGPU.dsl */,

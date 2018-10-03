@@ -3,7 +3,6 @@ DefinitionBlock("", "SSDT", 2, "hack", "_ENVYK1", 0)
 {
     #define NO_DEFINITIONBLOCK
     #include "SSDT-XOSI.dsl"
-    #include "SSDT-AppleALC.dsl"
     #include "SSDT-GPRW.dsl"
     #include "SSDT-PNLF.dsl"
     #include "SSDT-MISC.dsl"
