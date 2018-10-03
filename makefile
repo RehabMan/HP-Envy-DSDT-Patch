@@ -11,15 +11,6 @@ BUILDDIR=./build
 AML_PRODUCTS=$(BUILDDIR)/SSDT-ENVYJ.aml $(BUILDDIR)/SSDT-ENVYK1.aml $(BUILDDIR)/SSDT-ENVYK2.aml $(BUILDDIR)/SSDT-ENVYN.aml $(BUILDDIR)/SSDT-ENVYQ.aml
 PRODUCTS=$(AML_PRODUCTS)
 
-LE=/Library/Extensions
-SLE=/System/Library/Extensions
-VERSION_ERA=$(shell ./tools/print_version.sh)
-ifeq "$(VERSION_ERA)" "10.10-"
-	INSTDIR=$SLE
-else
-	INSTDIR=$LE
-endif
-
 IASLFLAGS=-vw 2095 -vw 2011 -vw 3144
 IASL=iasl
 
