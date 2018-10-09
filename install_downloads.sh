@@ -2,7 +2,7 @@
 #set -x
 
 EXCEPTIONS=
-ESSENTIAL="AppleALC.kext FakePCIID_XHCIMux.kext"
+ESSENTIAL="AppleALC.kext FakePCIID_XHCIMux.kext SATA-RAID-unsupported.kext"
 
 # include subroutines
 source "$(dirname ${BASH_SOURCE[0]})"/_tools/_install_subs.sh
@@ -28,6 +28,9 @@ install_backlight_kexts
 
 # some models need FakePCIID_XHCIMux.kext
 install_fakepciid_xhcimux
+
+# some models have fixed SATA mode as RAID (iRST)
+install_kext kexts/SATA-RAID-unsupported.kext
 
 # all kexts are now installed, so rebuild cache
 rebuild_kernel_cache
