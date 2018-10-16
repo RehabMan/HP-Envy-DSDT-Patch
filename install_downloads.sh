@@ -30,10 +30,10 @@ install_backlight_kexts
 install_fakepciid_xhcimux
 
 # some models have fixed SATA mode as RAID (iRST)
-install_kext kexts/SATA-RAID-unsupported.kext
+install_kext _tools/kexts/SATA-unsupported.kext
 
-# all kexts are now installed, so rebuild cache
-rebuild_kernel_cache
+# LiluFriend and kernel cache rebuild
+finish_kexts
 
 # update kexts on EFI/CLOVER/kexts/Other
 update_efi_kexts
