@@ -65,7 +65,7 @@ install_n: $(BUILDDIR)/SSDT-ENVYN.aml
 	rm -f "$(EFIDIR)"/EFI/CLOVER/ACPI/patched/SSDT-*.aml "$(EFIDIR)"/EFI/CLOVER/ACPI/patched/SSDT.aml
 	cp $< "$(EFIDIR)"/EFI/CLOVER/ACPI/patched
 
-.PHONY: $(BUILDDIR)/install_q
+.PHONY: install_q
 install_q: $(BUILDDIR)/SSDT-ENVYQ.aml
 	$(eval EFIDIR:=$(shell ./mount_efi.sh))
 	rm -f "$(EFIDIR)"/EFI/CLOVER/ACPI/patched/DSDT.aml
