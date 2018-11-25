@@ -232,7 +232,7 @@
 				<key>#Comment</key>
 				<string>Intel HDA - ALC290</string>
 				<key>layout-id</key>
-				<integer>3</integer>
+				<integer>4</integer>
 				<key>PinConfigurations</key>
 				<data></data>
 			</dict>
@@ -241,7 +241,7 @@
 				<key>#Comment</key>
 				<string>Intel HDMI HDA</string>
 				<key>layout-id</key>
-				<integer>3</integer>
+				<integer>4</integer>
 				<key>hda-gfx</key>
 				<string>onboard-1</string>
 			</dict>
